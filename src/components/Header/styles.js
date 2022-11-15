@@ -8,14 +8,15 @@ export const Container = styled.div`
   height: 60px;
   background-color: ${(props) => props.theme["gray-800"]};
   color: #fff;
-  padding: 0 4rem;
+  padding: 2rem 3rem;
 
   nav {
     display: flex;
     gap: 0.75rem;
+    font-size: 0.9rem;
 
     a {
-      color: ${(props) => props.theme["gray-100"]};
+      color: ${(props) => props.theme["gray-400"]};
       text-decoration: none;
 
       border-top: 4px solid transparent;
@@ -27,6 +28,7 @@ export const Container = styled.div`
 
       &.active {
         border-bottom: 4px solid ${(props) => props.theme.secondary};
+        color: ${(props) => props.theme["gray-100"]};
       }
     }
   }
