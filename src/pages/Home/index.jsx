@@ -6,7 +6,7 @@ import inventario2 from "../../assets/inventario2.png";
 import { BsFillEyeFill } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 
-import { Card } from "./Card";
+import { Card } from "../../components/Card";
 
 import { BsChevronRight } from "react-icons/bs";
 
@@ -58,6 +58,101 @@ export function Home() {
                 </tr>
               </thead>
               <tbody>
+                <tr>
+                  <td>Fulano da Silva Martins Costa </td>
+                  <td>13/11/2022</td>
+                  <td>35-997065079</td>
+                  <td>
+                    {" "}
+                    <C.AreaIcon
+                      onClick={() => handleViewCandidate(candidate.email)}
+                    >
+                      <BsFillEyeFill
+                        style={{
+                          fontSize: "16px",
+                          cursor: "pointer",
+                          opacity: 0.75,
+                        }}
+                      />
+                    </C.AreaIcon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fulano da Silva Martins Costa </td>
+                  <td>13/11/2022</td>
+                  <td>35-997065079</td>
+                  <td>
+                    {" "}
+                    <C.AreaIcon
+                      onClick={() => handleViewCandidate(candidate.email)}
+                    >
+                      <BsFillEyeFill
+                        style={{
+                          fontSize: "16px",
+                          cursor: "pointer",
+                          opacity: 0.75,
+                        }}
+                      />
+                    </C.AreaIcon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fulano da Silva Martins Costa </td>
+                  <td>13/11/2022</td>
+                  <td>35-997065079</td>
+                  <td>
+                    {" "}
+                    <C.AreaIcon
+                      onClick={() => handleViewCandidate(candidate.email)}
+                    >
+                      <BsFillEyeFill
+                        style={{
+                          fontSize: "16px",
+                          cursor: "pointer",
+                          opacity: 0.75,
+                        }}
+                      />
+                    </C.AreaIcon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fulano da Silva Martins Costa </td>
+                  <td>13/11/2022</td>
+                  <td>35-997065079</td>
+                  <td>
+                    {" "}
+                    <C.AreaIcon
+                      onClick={() => handleViewCandidate(candidate.email)}
+                    >
+                      <BsFillEyeFill
+                        style={{
+                          fontSize: "16px",
+                          cursor: "pointer",
+                          opacity: 0.75,
+                        }}
+                      />
+                    </C.AreaIcon>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Fulano da Silva Martins Costa </td>
+                  <td>13/11/2022</td>
+                  <td>35-997065079</td>
+                  <td>
+                    {" "}
+                    <C.AreaIcon
+                      onClick={() => handleViewCandidate(candidate.email)}
+                    >
+                      <BsFillEyeFill
+                        style={{
+                          fontSize: "16px",
+                          cursor: "pointer",
+                          opacity: 0.75,
+                        }}
+                      />
+                    </C.AreaIcon>
+                  </td>
+                </tr>
                 <tr>
                   <td>Fulano da Silva Martins Costa </td>
                   <td>13/11/2022</td>
