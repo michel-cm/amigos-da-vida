@@ -15,10 +15,10 @@ export function Header() {
         <NavLink to="inventario" title="inventário">
           Inventário
         </NavLink>
-        <NavLink to="inventario" title="inventário">
+        <NavLink to="profissionais" title="profissionais">
           Profissionais
         </NavLink>
-        <NavLink to="inventario" title="inventário">
+        <NavLink to="documentos" title="documentos">
           Documentos
         </NavLink>
       </nav>

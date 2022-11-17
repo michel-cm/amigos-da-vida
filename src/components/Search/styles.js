@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const SearchInput = styled.input`
   border: 0;
   border-radius: 5px;
-  width: 280px;
+  width: 300px;
   height: 50px;
   background-color: ${(props) => props.theme["gray-800"]};
   outline: 0;
