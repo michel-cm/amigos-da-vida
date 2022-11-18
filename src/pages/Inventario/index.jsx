@@ -1,7 +1,7 @@
 import * as C from "./styles";
 
 import { Card } from "../../components/Card";
-import { TableListAssistidos } from "./TableListAssistidos";
+import { TableListAssistidos } from "./TableInventario";
 
 export function Inventario() {
   return (

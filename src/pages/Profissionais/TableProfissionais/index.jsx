@@ -7,62 +7,43 @@ import { BsFillExclamationTriangleFill } from "react-icons/bs";
 import { Search } from "../../../components/Search";
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { Button } from "../../../components/ButtonAdd";
 
-export function TableListAssistidos() {
-  const navigate = useNavigate();
+export function TableProfissionais() {
   const [search, setSearch] = useState("");
-
-  function handleViewAssistido(idAssistido) {
-    navigate(`/assistidos/${idAssistido}`);
-  }
-
-  function handleGoToPageAddAssistido() {
-    navigate(`/assistidos/adicionar`);
-  }
 
   return (
     <C.Container>
       <C.AreaListAssistidos>
-        <C.AreaSearchAndButtonAdd>
-          <Search
-            placeholder="Digite o nome do candidato"
-            state={search}
-            setSearch={setSearch}
-          />
-          <Button
-            title={"Adicionar Assistido"}
-            fn={handleGoToPageAddAssistido}
-          />
-        </C.AreaSearchAndButtonAdd>
+        <Search
+          placeholder="Digite o nome do profissional"
+          state={search}
+          setSearch={setSearch}
+        />
+
         <C.AssistidosList>
           <table>
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>D.N</th>
-                <th>CPF</th>
-                <th>Responsável</th>
+                <th>Área</th>
+                <th>CPF</th>                
                 <th>Tel</th>
-                <th>Empréstimo</th>
+                <th>Pacientes</th>
                 <th></th>
               </tr>
             </thead>
             <tbody>
               <tr>
                 <td>Fulano da Silva Martins Costa </td>
-                <td>13/11/2022</td>
+                <td>Psicóloga</td>
                 <td>128-385-000-00</td>
-                <td>Ciclano da Silva Martins Costa</td>
                 <td>35-997065079</td>
+                <td>15</td>                
                 <td>
                   {" "}
-                  <C.Status statusColor="red"></C.Status>
-                </td>
-                <td>
-                  {" "}
-                  <C.AreaIcon onClick={() => handleViewAssistido(14)}>
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
                     <BsFillEyeFill
                       style={{
                         fontSize: "16px",
@@ -85,6 +66,40 @@ export function TableListAssistidos() {
                   </C.AreaIcon>
                 </td>
               </tr>
+              <tr>
+                <td>Fulano da Silva Martins Costa </td>
+                <td>Psicóloga</td>
+                <td>128-385-000-00</td>
+                <td>35-997065079</td>
+                <td>15</td>                
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillTrashFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                        marginLeft: " 14px",
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+              
             </tbody>
           </table>
         </C.AssistidosList>

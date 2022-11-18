@@ -7,11 +7,11 @@ export const SearchInput = styled.input`
   height: 50px;
   background-color: ${(props) => props.theme["gray-800"]};
   outline: 0;
-  padding: 0px 60px 0px 16px;
+  padding: 0px 0px 0px 16px;
   color: ${(props) => props.theme["gray-300"]};
 
   font-size: 15px;
-  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.3);
+  box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.5);
 `;
 
 export const AreaInput = styled.div`

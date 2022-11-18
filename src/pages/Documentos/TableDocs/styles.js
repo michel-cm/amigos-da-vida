@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
-export const Container = styled.div`
-  width: 100%;
-`;
+export const Container = styled.div``;
 
 export const AreaListAssistidos = styled.div`
   flex: 1;
@@ -14,11 +12,6 @@ export const AreaListAssistidos = styled.div`
     font-size: 1.5rem;
     color: ${(props) => props.theme["gray-100"]};
   }
-`;
-
-export const AreaSearchAndButtonAdd = styled.div`
-  display: flex;
-  gap: 4rem;
 `;
 
 export const AssistidosList = styled.div`
