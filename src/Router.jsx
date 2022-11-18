@@ -15,7 +15,7 @@ export function Router() {
       <Route path="/" element={<DefaultLayout />}>
         <Route path="/" element={<Home />} />
         <Route path="/assistidos" element={<Assistidos />} />
-        <Route path="/assistidos/add" element={<PageAddAssistido />} />
+        <Route path="/assistidos/adicionar" element={<PageAddAssistido />} />
         <Route path="/assistidos/:id" element={<PageViewAssistido />} />
         <Route path="/inventario" element={<Inventario />} />
         <Route path="/profissionais" element={<Profissionais />} />

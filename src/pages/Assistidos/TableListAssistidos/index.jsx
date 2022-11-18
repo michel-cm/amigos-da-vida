@@ -8,7 +8,7 @@ import { Search } from "../../../components/Search";
 
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "../../../components/ButtonAdd";
+import { Button } from "../../../components/Button";
 
 export function TableListAssistidos() {
   const navigate = useNavigate();

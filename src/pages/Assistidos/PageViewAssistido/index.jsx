@@ -8,7 +8,7 @@ export function PageViewAssistido(props) {
     return (
         <C.Container>
            {
-           `ADD Assistido ${id}`
+           `Assistido ${id}`
            }
         </C.Container>
     );
