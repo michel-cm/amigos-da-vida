@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 2rem 6rem 3rem 6rem;
+  padding: 2rem 6rem 8rem 6rem;
 `;
 
 export const AreaContent = styled.div`
@@ -60,19 +60,21 @@ export const AreaEndereco = styled.div`
   padding: 2rem;
 `;
 export const AreaCondicoesSaude = styled.div`
-  height: 80vh;
   border-radius: 5px;
   background: ${(props) => props.theme["gray-800"]};
   padding: 2rem;
 `;
 export const AreaCondicoesHabitacionais = styled.div`
-  height: 80vh;
+  border-radius: 5px;
+  background: ${(props) => props.theme["gray-800"]};
+  padding: 2rem;
+`;
+export const ComposicaoCondicoes = styled.div`
   border-radius: 5px;
   background: ${(props) => props.theme["gray-800"]};
   padding: 2rem;
 `;
 export const ProgramasSociais = styled.div`
-  height: 80vh;
   border-radius: 5px;
   background: ${(props) => props.theme["gray-800"]};
   padding: 2rem;
@@ -109,4 +111,11 @@ export const Select = styled.select`
   padding: 0.75rem 1rem;
   color: ${(props) => props.theme["gray-300"]};
   font-size: 0.9rem;
+`;
+
+export const TextArea = styled.textarea`
+  background: ${(props) => props.theme["gray-900"]};
+  border: none;
+  color: ${(props) => props.theme["gray-300"]};
+  resize: none;
 `;

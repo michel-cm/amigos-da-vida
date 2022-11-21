@@ -1,11 +1,13 @@
 import * as C from "./styles";
 import { useRef, useState } from "react";
+import { Button } from "../../../components/Button";
 
 export function PageAddAssistido() {
   const identificacao = useRef(null);
   const endereco = useRef(null);
   const condicoesSaude = useRef(null);
   const condicoesHabitacionais = useRef(null);
+  const composicaoCondicoes = useRef(null);
   const programasSociais = useRef(null);
 
   const [activeIdentificacao, setActiveIdentificacao] = useState("active");
@@ -14,6 +16,8 @@ export function PageAddAssistido() {
   const [activeCondicoesHabitacionais, setActiveCondicoesHabitacionais] =
     useState("disable");
   const [activeProgramasSociais, setActiveProgramasSociais] =
+    useState("disable");
+  const [activeComposicaoCondicoes, setActiveComposicaoCondicoes] =
     useState("disable");
 
   const scrollToSection = (elementRef) => {
@@ -51,13 +55,21 @@ export function PageAddAssistido() {
     }
     if (
       window.scrollY >= condicoesHabitacionais.current.offsetTop - 80 &&
-      window.scrollY < programasSociais.current.offsetTop - 80
+      window.scrollY < composicaoCondicoes.current.offsetTop - 80
     ) {
       setActiveCondicoesHabitacionais("active");
     } else {
       setActiveCondicoesHabitacionais("disable");
     }
-    if (window.scrollY >= programasSociais.current.offsetTop - 80) {
+    if (
+      window.scrollY >= composicaoCondicoes.current.offsetTop - 80 &&
+      window.scrollY < programasSociais.current.offsetTop - 180
+    ) {
+      setActiveComposicaoCondicoes("active");
+    } else {
+      setActiveComposicaoCondicoes("disable");
+    }
+    if (window.scrollY >= programasSociais.current.offsetTop - 180) {
       setActiveProgramasSociais("active");
     } else {
       setActiveProgramasSociais("disable");
@@ -94,6 +106,12 @@ export function PageAddAssistido() {
             onClick={() => scrollToSection(condicoesHabitacionais)}
           >
             Condições Habitacionais
+          </a>
+          <a
+            className={activeComposicaoCondicoes}
+            onClick={() => scrollToSection(composicaoCondicoes)}
+          >
+            Composição e Rendimentos
           </a>
           <a
             className={activeProgramasSociais}
@@ -239,19 +257,10 @@ export function PageAddAssistido() {
 
                 <C.InputColumn
                   style={{
-                    width: "300px",
-                  }}
-                >
-                  <label>Localização</label>
-                  <C.Input type={"text"} />
-                </C.InputColumn>
-
-                <C.InputColumn
-                  style={{
                     width: "105px",
                   }}
                 >
-                  <label>Estado Civil</label>
+                  <label>Localização</label>
                   <C.Select>
                     <option>Urbano</option>
                     <option>Rural</option>
@@ -262,12 +271,253 @@ export function PageAddAssistido() {
           </C.AreaEndereco>
           <C.AreaCondicoesSaude ref={condicoesSaude}>
             <h2>Condições de Saúde</h2>
+            <fomr>
+              <C.InputColumn
+                style={{
+                  width: "350px",
+                }}
+              >
+                <label>Diagnóstico</label>
+                <C.Input type={"text"} required />
+              </C.InputColumn>
+              <C.InputColumn
+                style={{
+                  width: "350px",
+                }}
+              >
+                <label>Tratamento</label>
+                <C.Input type={"text"} />
+              </C.InputColumn>
+              <C.InputColumn
+                style={{
+                  width: "500px",
+                }}
+              >
+                <label>Medicamentos que faz uso e sua posologia</label>
+                <C.TextArea rows={5} />
+              </C.InputColumn>
+              <C.AreaInputsDisplayFlex
+                style={{
+                  gap: "1rem",
+                }}
+              >
+                <C.InputColumn
+                  style={{
+                    width: "250px",
+                  }}
+                >
+                  <label>Faz uso de fralda geriátrica?</label>
+                  <C.Select
+                    style={{
+                      width: "200px",
+                    }}
+                  >
+                    <option>Não</option>
+                    <option>Sim</option>
+                  </C.Select>
+                </C.InputColumn>
+                <C.InputColumn
+                  style={{
+                    width: "100px",
+                  }}
+                >
+                  <label>Tamanho</label>
+                  <C.Select>
+                    <option>PP</option>
+                    <option>P</option>
+                    <option>M</option>
+                    <option>G</option>
+                    <option>GG</option>
+                    <option>XG</option>
+                  </C.Select>
+                </C.InputColumn>
+              </C.AreaInputsDisplayFlex>
+
+              <C.InputColumn>
+                <label>
+                  Necessita de cuidados constantes de outra pessoa para realizar
+                  atividades básicas, como, tomar banho, alimentar-se, ficar só
+                  ou locomover-se em casa, etc.?{" "}
+                </label>
+                <C.Select
+                  style={{
+                    width: "100px",
+                  }}
+                >
+                  <option>Não</option>
+                  <option>Sim</option>
+                </C.Select>
+              </C.InputColumn>
+              <C.InputColumn
+                style={{
+                  width: "300px",
+                }}
+              >
+                <label>Responsável pelo cuidado?</label>
+                <C.Input type={"text"} required maxLength={11} />
+              </C.InputColumn>
+            </fomr>
           </C.AreaCondicoesSaude>
+
           <C.AreaCondicoesHabitacionais ref={condicoesHabitacionais}>
             <h2>Condições Habitacionais</h2>
+
+            <C.AreaInputsDisplayFlex
+              style={{
+                gap: "12rem",
+              }}
+            >
+              <C.InputColumn>
+                <label>Tipo de residência</label>
+                <C.Select
+                  style={{
+                    width: "8rem",
+                  }}
+                >
+                  <option>Alugada </option>
+                  <option>Própria </option>
+                  <option>Cedida </option>
+                  <option>Ocupada </option>
+                </C.Select>
+              </C.InputColumn>
+              <C.InputColumn>
+                <label>Possui acesso à energia elétrica? </label>
+                <C.Select
+                  style={{
+                    width: "15rem",
+                  }}
+                >
+                  <option>Sim </option>
+                  <option>Não </option>
+                </C.Select>
+              </C.InputColumn>
+            </C.AreaInputsDisplayFlex>
+            <C.AreaInputsDisplayFlex
+              style={{
+                gap: "9rem",
+              }}
+            >
+              <C.InputColumn>
+                <label>Possui água canalizada? </label>
+                <C.Select
+                  style={{
+                    width: "11rem",
+                  }}
+                >
+                  <option>Sim </option>
+                  <option>Não </option>
+                </C.Select>
+              </C.InputColumn>
+              <C.InputColumn>
+                <label>Escoamento sanitário: </label>
+                <C.Select
+                  style={{
+                    width: "15rem",
+                  }}
+                >
+                  <option>Rede coletora de esgoto </option>
+                  <option>Fossa séptica ou rudimentar </option>
+                  <option>Direto para vala, rio, lago ou mar </option>
+                  <option>Domicilio sem banheiro </option>
+                </C.Select>
+              </C.InputColumn>
+            </C.AreaInputsDisplayFlex>
+            <C.InputColumn>
+              <label>Existe coleta de lixo: </label>
+              <C.Select
+                style={{
+                  width: "9rem",
+                }}
+              >
+                <option>Sim </option>
+                <option>Não </option>
+              </C.Select>
+            </C.InputColumn>
+            <C.AreaInputsDisplayFlex
+              style={{
+                gap: "5rem",
+              }}
+            >
+              <C.InputColumn>
+                <label>Número de cômodos no domicílio</label>
+                <C.Input type={"number"} />
+              </C.InputColumn>
+              <C.InputColumn>
+                <label>Número de dormitórios</label>
+                <C.Input
+                  type={"number"}
+                  style={{
+                    width: "10rem",
+                  }}
+                />
+              </C.InputColumn>
+            </C.AreaInputsDisplayFlex>
+
+            <C.InputColumn>
+              <label>
+                O domicilio é localizado em área de risco de desabamento ou
+                alagamento?{" "}
+              </label>
+              <C.Select
+                style={{
+                  width: "11rem",
+                }}
+              >
+                <option>Não </option>
+                <option>Sim </option>
+              </C.Select>
+            </C.InputColumn>
+            <C.InputColumn>
+              <label>
+                O domicilio é localizado em área de difícil acesso geográfico?{" "}
+              </label>
+              <C.Select
+                style={{
+                  width: "10rem",
+                }}
+              >
+                <option>Não </option>
+                <option>Sim </option>
+              </C.Select>
+            </C.InputColumn>
+            <C.InputColumn>
+              <label>
+                O domicilio é localizado em área de difícil acesso geográfico?
+              </label>
+              <C.Select
+                style={{
+                  width: "10rem",
+                }}
+              >
+                <option>Não </option>
+                <option>Sim </option>
+              </C.Select>
+            </C.InputColumn>
           </C.AreaCondicoesHabitacionais>
+
+          <C.ComposicaoCondicoes ref={composicaoCondicoes}>
+            <h2>Composição Familiar e Condições de Rendimentos</h2>
+
+            <Button title={"Adicionar membro"} />
+          </C.ComposicaoCondicoes>
           <C.ProgramasSociais ref={programasSociais}>
             <h2>Acesso a Programas Sociais</h2>
+
+            <C.InputColumn>
+              <label>
+                A família ou algum de seus membros possui recebe algum
+                benefício?
+              </label>
+              <C.Select
+                style={{
+                  width: "10rem",
+                }}
+              >
+                <option>Não </option>
+                <option>Sim </option>
+              </C.Select>
+            </C.InputColumn>
+            <Button title={"Cadastrar Benefício"} />
           </C.ProgramasSociais>
         </C.Contentregistration>
       </C.AreaContent>

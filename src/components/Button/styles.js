@@ -6,6 +6,8 @@ export const Container = styled.button`
   justify-content: center;
   gap: 0.5rem;
   font-size: 0.9rem;
+  height: 50px;
+  border: none;
 
   background-color: ${(props) => props.theme.secondary};
   color: ${(props) => props.theme["gray-100"]};
