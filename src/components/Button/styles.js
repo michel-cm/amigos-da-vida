@@ -7,9 +7,14 @@ export const Container = styled.button`
   gap: 0.5rem;
   font-size: 0.9rem;
   height: 50px;
-  border: none;
+  border: 1px solid
+    ${(props) =>
+      props.type === "cancel" ? `${props.theme["gray-600"]}` : "transparent"};
 
-  background-color: ${(props) => props.theme.secondary};
+  background-color: ${(props) =>
+    props.type === "cancel"
+      ? `${props.theme["gray-900"]}`
+      : `${props.theme.secondary}`};
   color: ${(props) => props.theme["gray-100"]};
   cursor: pointer;
   width: 14rem;

@@ -1,12 +1,30 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 2rem 6rem 8rem 6rem;
+  padding: 0rem 6rem 8rem 6rem;
 `;
 
 export const AreaContent = styled.div`
   display: flex;
   margin: 2.5rem 0;
+`;
+
+export const Aside = styled.aside`
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+
+  gap: 0.75rem;
+`;
+
+export const AreaButtonMenu = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  button {
+    width: 100%;
+  }
 `;
 
 export const ContentInformations = styled.div`
@@ -15,7 +33,7 @@ export const ContentInformations = styled.div`
   background: ${(props) => props.theme["gray-800"]};
   padding: 1.5rem 0;
   height: fit-content;
-  position: fixed;
+
   width: 300px;
   border-radius: 5px;
 
@@ -35,6 +53,7 @@ export const ContentInformations = styled.div`
     }
   }
 `;
+
 export const Contentregistration = styled.div`
   display: flex;
   flex-direction: column;

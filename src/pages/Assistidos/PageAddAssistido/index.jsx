@@ -80,47 +80,55 @@ export function PageAddAssistido() {
 
   return (
     <C.Container>
-      <h2>Adicionar Assistido</h2>
       <C.AreaContent>
-        <C.ContentInformations>
-          <a
-            className={activeIdentificacao}
-            onClick={() => scrollToSection(identificacao)}
-          >
-            Identificação
-          </a>
-          <a
-            className={activeEndereco}
-            onClick={() => scrollToSection(endereco)}
-          >
-            Endereço
-          </a>
-          <a
-            className={activeCondicoesSaude}
-            onClick={() => scrollToSection(condicoesSaude)}
-          >
-            Condições de saúde
-          </a>
-          <a
-            className={activeCondicoesHabitacionais}
-            onClick={() => scrollToSection(condicoesHabitacionais)}
-          >
-            Condições Habitacionais
-          </a>
-          <a
-            className={activeComposicaoCondicoes}
-            onClick={() => scrollToSection(composicaoCondicoes)}
-          >
-            Composição e Rendimentos
-          </a>
-          <a
-            className={activeProgramasSociais}
-            onClick={() => scrollToSection(programasSociais)}
-          >
-            Programas sociais
-          </a>
-        </C.ContentInformations>
+        <C.Aside>
+          <C.ContentInformations>
+            <a
+              className={activeIdentificacao}
+              onClick={() => scrollToSection(identificacao)}
+            >
+              Identificação
+            </a>
+            <a
+              className={activeEndereco}
+              onClick={() => scrollToSection(endereco)}
+            >
+              Endereço
+            </a>
+            <a
+              className={activeCondicoesSaude}
+              onClick={() => scrollToSection(condicoesSaude)}
+            >
+              Condições de saúde
+            </a>
+            <a
+              className={activeCondicoesHabitacionais}
+              onClick={() => scrollToSection(condicoesHabitacionais)}
+            >
+              Condições Habitacionais
+            </a>
+            <a
+              className={activeComposicaoCondicoes}
+              onClick={() => scrollToSection(composicaoCondicoes)}
+            >
+              Composição e Rendimentos
+            </a>
+            <a
+              className={activeProgramasSociais}
+              onClick={() => scrollToSection(programasSociais)}
+            >
+              Programas sociais
+            </a>
+          </C.ContentInformations>
+          <C.AreaButtonMenu>
+            <Button title={"Adicionar assistido"} />
+          </C.AreaButtonMenu>
+          <C.AreaButtonMenu>
+            <Button title={"Cancelar"} type={'cancel'}/>
+          </C.AreaButtonMenu>
+        </C.Aside>
         <C.Contentregistration>
+        
           <C.AreaIdentificacao ref={identificacao}>
             <h2>Identificação</h2>
             <fomr>
@@ -482,7 +490,7 @@ export function PageAddAssistido() {
             </C.InputColumn>
             <C.InputColumn>
               <label>
-                O domicilio é localizado em área de difícil acesso geográfico?
+              O domicilio é localizado em área com forte presença de conflito/violência?  
               </label>
               <C.Select
                 style={{
