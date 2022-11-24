@@ -3,12 +3,12 @@ import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
 
 export function PageAddAssistido() {
-  const identificacao = useRef(null);
-  const endereco = useRef(null);
-  const condicoesSaude = useRef(null);
-  const condicoesHabitacionais = useRef(null);
-  const composicaoCondicoes = useRef(null);
-  const programasSociais = useRef(null);
+  const identificacao = useRef(0);
+  const endereco = useRef(0);
+  const condicoesSaude = useRef(0);
+  const condicoesHabitacionais = useRef(0);
+  const composicaoCondicoes = useRef(0);
+  const programasSociais = useRef(0);
 
   const [activeIdentificacao, setActiveIdentificacao] = useState("active");
   const [activeEndereco, setActiveEndereco] = useState("disable");
@@ -124,11 +124,10 @@ export function PageAddAssistido() {
             <Button title={"Adicionar assistido"} />
           </C.AreaButtonMenu>
           <C.AreaButtonMenu>
-            <Button title={"Cancelar"} type={'cancel'}/>
+            <Button title={"Cancelar"} type={"cancel"} />
           </C.AreaButtonMenu>
         </C.Aside>
         <C.Contentregistration>
-        
           <C.AreaIdentificacao ref={identificacao}>
             <h2>Identificação</h2>
             <fomr>
@@ -490,7 +489,8 @@ export function PageAddAssistido() {
             </C.InputColumn>
             <C.InputColumn>
               <label>
-              O domicilio é localizado em área com forte presença de conflito/violência?  
+                O domicilio é localizado em área com forte presença de
+                conflito/violência?
               </label>
               <C.Select
                 style={{

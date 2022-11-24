@@ -3,17 +3,19 @@ import { useParams } from "react-router-dom";
 import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
 
+import { useAssistidosContext } from "../../../hooks/useAssistidosContext";
+
 import { assistidos } from "../../../helpers/dataAssistido";
 
-export function PageViewAssistido(props) {
+export function PageViewAssistido() {
   const { id } = useParams();
 
-  const identificacao = useRef(null);
-  const endereco = useRef(null);
-  const condicoesSaude = useRef(null);
-  const condicoesHabitacionais = useRef(null);
-  const composicaoCondicoes = useRef(null);
-  const programasSociais = useRef(null);
+  const identificacao = useRef(0);
+  const endereco = useRef(0);
+  const condicoesSaude = useRef(0);
+  const condicoesHabitacionais = useRef(0);
+  const composicaoCondicoes = useRef(0);
+  const programasSociais = useRef(0);
 
   const [activeIdentificacao, setActiveIdentificacao] = useState("active");
   const [activeEndereco, setActiveEndereco] = useState("disable");
@@ -142,7 +144,11 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Nome</label>
-                <C.Input type={"text"} required value={assistidos[0].identificacao.nome}/>
+                <C.Input
+                  type={"text"}
+                  required
+                  value={assistidos[id].identificacao.nome}
+                />
               </C.InputColumn>
 
               <C.InputColumn
@@ -151,7 +157,10 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Nome da mãe</label>
-                <C.Input type={"text"} value={assistidos[0].identificacao.nomeMae}/>
+                <C.Input
+                  type={"text"}
+                  value={assistidos[id].identificacao.nomeMae}
+                />
               </C.InputColumn>
 
               <C.AreaInputsDisplayFlex
@@ -165,7 +174,11 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Data nascimento</label>
-                  <C.Input type={"date"} required value={assistidos[0].identificacao.dataNasc}/>
+                  <C.Input
+                    type={"date"}
+                    required
+                    value= "2017-06-01"
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -174,7 +187,10 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Nascido em</label>
-                  <C.Input type={"text"} value={assistidos[0].identificacao.nascidoEm}/>
+                  <C.Input
+                    type={"text"}
+                    value={assistidos[id].identificacao.nascidoEm}
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -183,7 +199,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Estado Civil</label>
-                  <C.Select>
+                  <C.Select value={assistidos[id].identificacao.estadoCivil}>
                     <option>Solteiro</option>
                     <option>Casado</option>
                     <option>Viúvo</option>
@@ -202,7 +218,12 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>CPF</label>
-                  <C.Input type={"text"} required maxLength={11} value={assistidos[0].identificacao.cpf}/>
+                  <C.Input
+                    type={"text"}
+                    required
+                    maxLength={11}
+                    value={assistidos[id].identificacao.cpf}
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -211,7 +232,11 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>RG</label>
-                  <C.Input type={"text"} maxLength={12} value={assistidos[0].identificacao.rg}/>
+                  <C.Input
+                    type={"text"}
+                    maxLength={12}
+                    value={assistidos[id].identificacao.rg}
+                  />
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
             </fomr>
@@ -226,7 +251,7 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Endereço</label>
-                <C.Input type={"text"} />
+                <C.Input type={"text"} value={assistidos[id].endereco.rua}/>
               </C.InputColumn>
 
               <C.AreaInputsDisplayFlex
@@ -240,7 +265,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Bairro</label>
-                  <C.Input type={"text"} required />
+                  <C.Input type={"text"} required value={assistidos[id].endereco.bairro}/>
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -249,7 +274,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Município</label>
-                  <C.Input type={"text"} />
+                  <C.Input type={"text"} value={assistidos[id].endereco.municipio}/>
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
 
@@ -264,7 +289,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Telefone de Contato</label>
-                  <C.Input type={"text"} required />
+                  <C.Input type={"text"} required value={assistidos[id].endereco.telContato}/>
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -273,7 +298,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Localização</label>
-                  <C.Select>
+                  <C.Select value={assistidos[id].endereco.localizacao}>
                     <option>Urbano</option>
                     <option>Rural</option>
                   </C.Select>
@@ -290,7 +315,7 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Diagnóstico</label>
-                <C.Input type={"text"} required />
+                <C.Input type={"text"} required value={assistidos[id].condicoesSaude.diagnostico}/>
               </C.InputColumn>
               <C.InputColumn
                 style={{
@@ -298,7 +323,7 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Tratamento</label>
-                <C.Input type={"text"} />
+                <C.Input type={"text"} value={assistidos[id].condicoesSaude.tratamento}/>
               </C.InputColumn>
               <C.InputColumn
                 style={{
@@ -306,7 +331,7 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Medicamentos que faz uso e sua posologia</label>
-                <C.TextArea rows={5} />
+                <C.TextArea rows={5} value={assistidos[id].condicoesSaude.medicamentosUsoEaPosologia}/>
               </C.InputColumn>
               <C.AreaInputsDisplayFlex
                 style={{
@@ -319,7 +344,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Faz uso de fralda geriátrica?</label>
-                  <C.Select
+                  <C.Select value={assistidos[id].condicoesSaude.fralgaGeriatrica}
                     style={{
                       width: "200px",
                     }}
@@ -334,7 +359,7 @@ export function PageViewAssistido(props) {
                   }}
                 >
                   <label>Tamanho</label>
-                  <C.Select>
+                  <C.Select value={assistidos[id].condicoesSaude.tamanho}>
                     <option>PP</option>
                     <option>P</option>
                     <option>M</option>
@@ -351,7 +376,7 @@ export function PageViewAssistido(props) {
                   atividades básicas, como, tomar banho, alimentar-se, ficar só
                   ou locomover-se em casa, etc.?{" "}
                 </label>
-                <C.Select
+                <C.Select value={assistidos[id].condicoesSaude.necessitaCuidadosConstantesOutraPessoa}
                   style={{
                     width: "100px",
                   }}
@@ -366,7 +391,7 @@ export function PageViewAssistido(props) {
                 }}
               >
                 <label>Responsável pelo cuidado?</label>
-                <C.Input type={"text"} required maxLength={11} />
+                <C.Input type={"text"} required maxLength={11} value={assistidos[id].condicoesSaude.responsavelCuidado}/>
               </C.InputColumn>
             </fomr>
           </C.AreaCondicoesSaude>

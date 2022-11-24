@@ -51,18 +51,18 @@ export function TableListAssistidos() {
             </thead>
             <tbody>
               <tr>
-                <td>Fulano da Silva Martins Costa </td>
-                <td>13/11/2022</td>
+                <td>Fulaninhoo da Silva Lopes</td>
+                <td>01/06/2017</td>
                 <td>128-385-000-00</td>
-                <td>Ciclano da Silva Martins Costa</td>
-                <td>35-997065079</td>
+                <td>Fulana da Silva Lopes</td>
+                <td>35-999999999</td>
                 <td>
                   {" "}
                   <C.Status statusColor="red"></C.Status>
                 </td>
                 <td>
                   {" "}
-                  <C.AreaIcon onClick={() => handleViewAssistido(14)}>
+                  <C.AreaIcon onClick={() => handleViewAssistido(1)}>
                     <BsFillEyeFill
                       style={{
                         fontSize: "16px",

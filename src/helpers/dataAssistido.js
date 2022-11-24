@@ -5,25 +5,25 @@ export const assistidos = [
       nomeMae: "Fulana da Silva Lopes",
       dataNasc: 23/10/1990,
       nascidoEm: "Machado",
-      estadoCivil: "Solteiro",
+      estadoCivil: "Casado",
       cpf: "12812812880",
       rg: "128128128800",
     },
     endereco: {
       rua: "Rua Floriano Peixoto",
-      bairo: "Nova Gimirim",
+      bairro: "Nova Gimirim",
       municipio: "Machado",
       telContato: "35999999999",
-      localizacao: "Urbana",
+      localizacao: "Urbano",
     },
     condicoesSaude: {
       diagnostico: "Testeteste",
       tratamento: "Testetesteteste",
       medicamentosUsoEaPosologia:
         "dsahda shdasjhdja shjdhasj dhasjdh djashdjas dashjdhsajdas dasjhashjdas",
-      fralgaGeriatrica: false,
+      fralgaGeriatrica: "Sim",
       tamanho: "M",
-      necessitaCuidadosConstantesOutraPessoa: false,
+      necessitaCuidadosConstantesOutraPessoa: "Não",
       responsavelCuidado: "",
     },
     condicoesHabitacionais: {
@@ -57,7 +57,7 @@ export const assistidos = [
     },
     endereco: {
       rua: "Rua Nordeste Leste",
-      bairo: "Nova Iguacu",
+      bairro: "Nova Iguacu",
       municipio: "Santos",
       telContato: "35999999999",
       localizacao: "Rural",
@@ -67,7 +67,7 @@ export const assistidos = [
       tratamento: "Testetesteteste",
       medicamentosUsoEaPosologia:
         "dsahda shdasjhdja shjdhasj dhasjdh djashdjas dashjdhsajdas dasjhashjdas",
-      fralgaGeriatrica: false,
+      fralgaGeriatrica: 'Não',
       tamanho: "M",
       necessitaCuidadosConstantesOutraPessoa: false,
       responsavelCuidado: "",
