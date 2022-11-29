@@ -3,12 +3,13 @@ import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
 
 export function PageAddAssistido() {
-  const identificacao = useRef(0);
-  const endereco = useRef(0);
-  const condicoesSaude = useRef(0);
-  const condicoesHabitacionais = useRef(0);
-  const composicaoCondicoes = useRef(0);
-  const programasSociais = useRef(0);
+  /* SCROLL \/ */
+  const identificacaoRef = useRef(0);
+  const enderecoRef = useRef(0);
+  const condicoesSaudeRef = useRef(0);
+  const condicoesHabitacionaisRef = useRef(0);
+  const composicaoCondicoesRef = useRef(0);
+  const programasSociaisRef = useRef(0);
 
   const [activeIdentificacao, setActiveIdentificacao] = useState("active");
   const [activeEndereco, setActiveEndereco] = useState("disable");
@@ -29,8 +30,8 @@ export function PageAddAssistido() {
 
   const verifyScrollSection = () => {
     if (
-      window.scrollY <= identificacao.current.offsetTop ||
-      window.scrollY < endereco.current.offsetTop - 80
+      window.scrollY <= identificacaoRef.current.offsetTop ||
+      window.scrollY < enderecoRef.current.offsetTop - 80
     ) {
       setActiveIdentificacao("active");
     } else {
@@ -38,38 +39,38 @@ export function PageAddAssistido() {
     }
 
     if (
-      window.scrollY >= endereco.current.offsetTop - 80 &&
-      window.scrollY < condicoesSaude.current.offsetTop - 80
+      window.scrollY >= enderecoRef.current.offsetTop - 80 &&
+      window.scrollY < condicoesSaudeRef.current.offsetTop - 80
     ) {
       setActiveEndereco("active");
     } else {
       setActiveEndereco("disable");
     }
     if (
-      window.scrollY >= condicoesSaude.current.offsetTop - 80 &&
-      window.scrollY < condicoesHabitacionais.current.offsetTop - 80
+      window.scrollY >= condicoesSaudeRef.current.offsetTop - 80 &&
+      window.scrollY < condicoesHabitacionaisRef.current.offsetTop - 80
     ) {
       setActiveCondicoesSaude("active");
     } else {
       setActiveCondicoesSaude("disable");
     }
     if (
-      window.scrollY >= condicoesHabitacionais.current.offsetTop - 80 &&
-      window.scrollY < composicaoCondicoes.current.offsetTop - 80
+      window.scrollY >= condicoesHabitacionaisRef.current.offsetTop - 80 &&
+      window.scrollY < composicaoCondicoesRef.current.offsetTop - 80
     ) {
       setActiveCondicoesHabitacionais("active");
     } else {
       setActiveCondicoesHabitacionais("disable");
     }
     if (
-      window.scrollY >= composicaoCondicoes.current.offsetTop - 80 &&
-      window.scrollY < programasSociais.current.offsetTop - 180
+      window.scrollY >= composicaoCondicoesRef.current.offsetTop - 80 &&
+      window.scrollY < programasSociaisRef.current.offsetTop - 180
     ) {
       setActiveComposicaoCondicoes("active");
     } else {
       setActiveComposicaoCondicoes("disable");
     }
-    if (window.scrollY >= programasSociais.current.offsetTop - 180) {
+    if (window.scrollY >= programasSociaisRef.current.offsetTop - 180) {
       setActiveProgramasSociais("active");
     } else {
       setActiveProgramasSociais("disable");
@@ -77,7 +78,19 @@ export function PageAddAssistido() {
   };
 
   window.addEventListener("scroll", verifyScrollSection);
+  /* SCROLL /\ */
 
+  const [identificacao, setIdentificao] = useState({
+    nome: "",
+    nomeMae: "",
+    dataNasc: "",
+    nascidoEm: "",
+    estadoCivil: "solteiro",
+    cpf: "",
+    rg: "",
+  });
+
+  console.log(identificacao);
   return (
     <C.Container>
       <C.AreaContent>
@@ -85,37 +98,37 @@ export function PageAddAssistido() {
           <C.ContentInformations>
             <a
               className={activeIdentificacao}
-              onClick={() => scrollToSection(identificacao)}
+              onClick={() => scrollToSection(identificacaoRef)}
             >
               Identificação
             </a>
             <a
               className={activeEndereco}
-              onClick={() => scrollToSection(endereco)}
+              onClick={() => scrollToSection(enderecoRef)}
             >
               Endereço
             </a>
             <a
               className={activeCondicoesSaude}
-              onClick={() => scrollToSection(condicoesSaude)}
+              onClick={() => scrollToSection(condicoesSaudeRef)}
             >
               Condições de saúde
             </a>
             <a
               className={activeCondicoesHabitacionais}
-              onClick={() => scrollToSection(condicoesHabitacionais)}
+              onClick={() => scrollToSection(condicoesHabitacionaisRef)}
             >
               Condições Habitacionais
             </a>
             <a
               className={activeComposicaoCondicoes}
-              onClick={() => scrollToSection(composicaoCondicoes)}
+              onClick={() => scrollToSection(composicaoCondicoesRef)}
             >
               Composição e Rendimentos
             </a>
             <a
               className={activeProgramasSociais}
-              onClick={() => scrollToSection(programasSociais)}
+              onClick={() => scrollToSection(programasSociaisRef)}
             >
               Programas sociais
             </a>
@@ -128,16 +141,26 @@ export function PageAddAssistido() {
           </C.AreaButtonMenu>
         </C.Aside>
         <C.Contentregistration>
-          <C.AreaIdentificacao ref={identificacao}>
+          <C.AreaIdentificacao ref={identificacaoRef}>
             <h2>Identificação</h2>
-            <fomr>
+            <C.Form>
               <C.InputColumn
                 style={{
                   width: "350px",
                 }}
               >
                 <label>Nome</label>
-                <C.Input type={"text"} required />
+                <C.Input
+                  type={"text"}
+                  required
+                  value={identificacao.nome}
+                  onChange={(e) =>
+                    setIdentificao({
+                      ...identificacao,
+                      nome: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
 
               <C.InputColumn
@@ -146,7 +169,16 @@ export function PageAddAssistido() {
                 }}
               >
                 <label>Nome da mãe</label>
-                <C.Input type={"text"} />
+                <C.Input
+                  type={"text"}
+                  value={identificacao.nomeMae}
+                  onChange={(e) =>
+                    setIdentificao({
+                      ...identificacao,
+                      nomeMae: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
 
               <C.AreaInputsDisplayFlex
@@ -160,7 +192,17 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Data nascimento</label>
-                  <C.Input type={"date"} required />
+                  <C.Input
+                    type={"date"}
+                    required
+                    value={identificacao.dataNasc}
+                    onChange={(e) =>
+                      setIdentificao({
+                        ...identificacao,
+                        dataNasc: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -169,7 +211,16 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Nascido em</label>
-                  <C.Input type={"text"} />
+                  <C.Input
+                    type={"text"}
+                    value={identificacao.nascidoEm}
+                    onChange={(e) =>
+                      setIdentificao({
+                        ...identificacao,
+                        nascidoEm: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -178,10 +229,18 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Estado Civil</label>
-                  <C.Select>
-                    <option>Solteiro</option>
-                    <option>Casado</option>
-                    <option>Viúvo</option>
+                  <C.Select
+                    value={identificacao.estadoCivil}
+                    onChange={(e) =>
+                      setIdentificao({
+                        ...identificacao,
+                        estadoCivil: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="solteiro">Solteiro</option>
+                    <option value="casado">Casado</option>
+                    <option value="viuvo">Viúvo</option>
                   </C.Select>
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
@@ -197,7 +256,18 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>CPF</label>
-                  <C.Input type={"text"} required maxLength={11} />
+                  <C.Input
+                    type={"text"}
+                    required
+                    maxLength={11}
+                    value={identificacao.cpf}
+                    onChange={(e) =>
+                      setIdentificao({
+                        ...identificacao,
+                        cpf: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -206,15 +276,25 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>RG</label>
-                  <C.Input type={"text"} maxLength={12} />
+                  <C.Input
+                    type={"text"}
+                    maxLength={12}
+                    value={identificacao.rg}
+                    onChange={(e) =>
+                      setIdentificao({
+                        ...identificacao,
+                        rg: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
-            </fomr>
+            </C.Form>
           </C.AreaIdentificacao>
 
-          <C.AreaEndereco ref={endereco}>
+          <C.AreaEndereco ref={enderecoRef}>
             <h2>Endereço</h2>
-            <fomr>
+            <C.Form>
               <C.InputColumn
                 style={{
                   width: "450px",
@@ -274,11 +354,11 @@ export function PageAddAssistido() {
                   </C.Select>
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
-            </fomr>
+            </C.Form>
           </C.AreaEndereco>
-          <C.AreaCondicoesSaude ref={condicoesSaude}>
+          <C.AreaCondicoesSaude ref={condicoesSaudeRef}>
             <h2>Condições de Saúde</h2>
-            <fomr>
+            <C.Form>
               <C.InputColumn
                 style={{
                   width: "350px",
@@ -363,10 +443,10 @@ export function PageAddAssistido() {
                 <label>Responsável pelo cuidado?</label>
                 <C.Input type={"text"} required maxLength={11} />
               </C.InputColumn>
-            </fomr>
+            </C.Form>
           </C.AreaCondicoesSaude>
 
-          <C.AreaCondicoesHabitacionais ref={condicoesHabitacionais}>
+          <C.AreaCondicoesHabitacionais ref={condicoesHabitacionaisRef}>
             <h2>Condições Habitacionais</h2>
 
             <C.AreaInputsDisplayFlex
@@ -503,12 +583,12 @@ export function PageAddAssistido() {
             </C.InputColumn>
           </C.AreaCondicoesHabitacionais>
 
-          <C.ComposicaoCondicoes ref={composicaoCondicoes}>
+          <C.ComposicaoCondicoes ref={composicaoCondicoesRef}>
             <h2>Composição Familiar e Condições de Rendimentos</h2>
 
             <Button title={"Adicionar membro"} />
           </C.ComposicaoCondicoes>
-          <C.ProgramasSociais ref={programasSociais}>
+          <C.ProgramasSociais ref={programasSociaisRef}>
             <h2>Acesso a Programas Sociais</h2>
 
             <C.InputColumn>

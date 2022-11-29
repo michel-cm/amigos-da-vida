@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
 
-export function TableListAssistidos() {
+export function TableListAssistidos({ listAssistidos }) {
   const navigate = useNavigate();
   const [search, setSearch] = useState("");
 
@@ -21,6 +21,7 @@ export function TableListAssistidos() {
   function handleGoToPageAddAssistido() {
     navigate(`/assistidos/adicionar`);
   }
+
 
   return (
     <C.Container>
@@ -41,7 +42,6 @@ export function TableListAssistidos() {
             <thead>
               <tr>
                 <th>Nome</th>
-                <th>D.N</th>
                 <th>CPF</th>
                 <th>Responsável</th>
                 <th>Tel</th>
@@ -50,41 +50,42 @@ export function TableListAssistidos() {
               </tr>
             </thead>
             <tbody>
-              <tr>
-                <td>Fulaninhoo da Silva Lopes</td>
-                <td>01/06/2017</td>
-                <td>128-385-000-00</td>
-                <td>Fulana da Silva Lopes</td>
-                <td>35-999999999</td>
-                <td>
-                  {" "}
-                  <C.Status statusColor="red"></C.Status>
-                </td>
-                <td>
-                  {" "}
-                  <C.AreaIcon onClick={() => handleViewAssistido(1)}>
-                    <BsFillEyeFill
-                      style={{
-                        fontSize: "16px",
-                        cursor: "pointer",
-                        opacity: 0.75,
-                      }}
-                    />
-                  </C.AreaIcon>
-                  <C.AreaIcon
-                    onClick={() => handleViewCandidate(candidate.email)}
-                  >
-                    <BsFillTrashFill
-                      style={{
-                        fontSize: "16px",
-                        cursor: "pointer",
-                        opacity: 0.75,
-                        marginLeft: " 14px",
-                      }}
-                    />
-                  </C.AreaIcon>
-                </td>
-              </tr>
+              {listAssistidos &&
+                listAssistidos.map((assistido, index) => {
+                  return (
+                    <tr key={index}>
+                      <td>{assistido.identificacao.nome}</td>
+
+                      <td>{assistido.identificacao.cpf}</td>
+                      <td>{assistido.identificacao.nascidoEm}</td>
+                      <td>{assistido.endereco.telContato}</td>
+                      <td>
+                        <C.Status statusColor="red"></C.Status>
+                      </td>
+                      <td>
+                        <C.AreaIcon onClick={() => handleViewAssistido(index)}>
+                          <BsFillEyeFill
+                            style={{
+                              fontSize: "16px",
+                              cursor: "pointer",
+                              opacity: 0.75,
+                            }}
+                          />
+                        </C.AreaIcon>
+                        <C.AreaIcon onClick={() => handleViewCandidate(index)}>
+                          <BsFillTrashFill
+                            style={{
+                              fontSize: "16px",
+                              cursor: "pointer",
+                              opacity: 0.75,
+                              marginLeft: " 14px",
+                            }}
+                          />
+                        </C.AreaIcon>
+                      </td>
+                    </tr>
+                  );
+                })}
             </tbody>
           </table>
         </C.AssistidosList>

@@ -4,6 +4,8 @@ export const Container = styled.div`
   padding: 0rem 6rem 8rem 6rem;
 `;
 
+export const Form = styled.form``;
+
 export const AreaContent = styled.div`
   display: flex;
   margin: 2.5rem 0;

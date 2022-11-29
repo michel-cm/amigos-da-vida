@@ -1,36 +1,36 @@
-export const assistidos = [
+export const getAssistidos = [
   {
     identificacao: {
       nome: "Fulano da Silva Lopes",
       nomeMae: "Fulana da Silva Lopes",
-      dataNasc: 23/10/1990,
+      dataNasc: new Date("1993","11","19"),
       nascidoEm: "Machado",
-      estadoCivil: "Casado",
+      estadoCivil: "solteiro",
       cpf: "12812812880",
       rg: "128128128800",
     },
     endereco: {
       rua: "Rua Floriano Peixoto",
       bairro: "Nova Gimirim",
-      municipio: "Machado",
+      municipio: "Poço Fundo",
       telContato: "35999999999",
-      localizacao: "Urbano",
+      localizacao: "urbano",
     },
     condicoesSaude: {
       diagnostico: "Testeteste",
       tratamento: "Testetesteteste",
       medicamentosUsoEaPosologia:
         "dsahda shdasjhdja shjdhasj dhasjdh djashdjas dashjdhsajdas dasjhashjdas",
-      fralgaGeriatrica: "Sim",
-      tamanho: "M",
-      necessitaCuidadosConstantesOutraPessoa: "Não",
-      responsavelCuidado: "",
+      fralgaGeriatrica: false,
+      tamanho: "m",
+      necessitaCuidadosConstantesOutraPessoa: false,
+      responsavelCuidado: "Maria Betania",
     },
     condicoesHabitacionais: {
       tipoResidencia: "alugada",
-      possuiEnergiaEletrica: true,
-      possuiAguaCanalizada: true,
-      escoamentoSanitario: "rede coletora de esgoto",
+      possuiEnergiaEletrica: false,
+      possuiAguaCanalizada: false,
+      escoamentoSanitario: "srede",
       existeColetaLixo: true,
       numeroComodosDomicilio: 5,
       numeroDormitorios: 2,
@@ -42,14 +42,14 @@ export const assistidos = [
       membros: 4,
     },
     acessoProgramasSociais: {
-      acesso: false,
+      acesso: true,
     },
   },
   {
     identificacao: {
       nome: "Fulaninhoo da Silva Lopes",
       nomeMae: "Fulana da Silva Lopes",
-      dataNasc: 33 / 10 / 2010,
+      dataNasc: new Date("2010-01-29"),
       nascidoEm: "Alfenas",
       estadoCivil: "Casado",
       cpf: "00000000000",
@@ -67,7 +67,7 @@ export const assistidos = [
       tratamento: "Testetesteteste",
       medicamentosUsoEaPosologia:
         "dsahda shdasjhdja shjdhasj dhasjdh djashdjas dashjdhsajdas dasjhashjdas",
-      fralgaGeriatrica: 'Não',
+      fralgaGeriatrica: "Não",
       tamanho: "M",
       necessitaCuidadosConstantesOutraPessoa: false,
       responsavelCuidado: "",
