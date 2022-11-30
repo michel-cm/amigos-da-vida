@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0rem 4rem 8rem 4rem;
-
+  padding: 0rem 2rem 8rem 2rem;
+  
   label {
     color: ${(props) => props.theme["gray-300"]};
   }

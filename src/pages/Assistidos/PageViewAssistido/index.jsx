@@ -607,8 +607,14 @@ export function PageViewAssistido() {
                 />
               </>
             )}
-
-            <Button title={"Adicionar membro"} />
+            <div
+              style={{
+                display: "flex",
+                gap: "1.5rem",
+              }}
+            >
+              <Button title={"Adicionar membro"} type="cancel" />
+            </div>
           </C.ComposicaoCondicoes>
           <C.ProgramasSociais ref={programasSociais}>
             <h2>Acesso a Programas Sociais</h2>

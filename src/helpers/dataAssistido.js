@@ -92,11 +92,11 @@ export const getAssistidos = [
       membros: 1,
       integrantes: [
         {
-          nome: "Fulana da Silva Lopes",
+          nome: "Fulana da Silva Lopes Mendes Martins",
           dataNasc: "2010-01-29",
           parentesco: 1,
-          ocupacao: "Diarista",
-          renda: 1600,
+          ocupacao: "Diarista de manha/tarde/noitedsadsa",
+          renda: 1800,
         },
       ],
     },
