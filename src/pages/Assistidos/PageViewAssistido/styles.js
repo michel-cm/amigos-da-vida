@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Container = styled.div`
-  padding: 0rem 6rem 8rem 6rem;
+  padding: 0rem 4rem 8rem 4rem;
 
   label {
     color: ${(props) => props.theme["gray-300"]};
@@ -66,7 +66,7 @@ export const ContentInformations = styled.div`
 export const Contentregistration = styled.div`
   display: flex;
   flex-direction: column;
-  margin-left: 360px;
+  margin-left: 340px;
   flex: 1;
   gap: 2rem;
 
@@ -91,6 +91,10 @@ export const AreaCondicoesSaude = styled.div`
   border-radius: 5px;
   background: ${(props) => props.theme["gray-800"]};
   padding: 2rem;
+
+  textarea {
+    padding: 0.7rem;
+  }
 `;
 export const AreaCondicoesHabitacionais = styled.div`
   border-radius: 5px;
@@ -101,6 +105,10 @@ export const ComposicaoCondicoes = styled.div`
   border-radius: 5px;
   background: ${(props) => props.theme["gray-800"]};
   padding: 2rem;
+
+  button {
+    margin-top: 1.75rem;
+  }
 `;
 export const ProgramasSociais = styled.div`
   border-radius: 5px;

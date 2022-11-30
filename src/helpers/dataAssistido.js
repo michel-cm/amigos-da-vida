@@ -3,7 +3,7 @@ export const getAssistidos = [
     identificacao: {
       nome: "Fulano da Silva Lopes",
       nomeMae: "Fulana da Silva Lopes",
-      dataNasc: new Date("1993","11","19"),
+      dataNasc: new Date("1993", "11", "19"),
       nascidoEm: "Machado",
       estadoCivil: "solteiro",
       cpf: "12812812880",
@@ -22,7 +22,7 @@ export const getAssistidos = [
       medicamentosUsoEaPosologia:
         "dsahda shdasjhdja shjdhasj dhasjdh djashdjas dashjdhsajdas dasjhashjdas",
       fralgaGeriatrica: false,
-      tamanho: "m",
+      tamanho: "M",
       necessitaCuidadosConstantesOutraPessoa: false,
       responsavelCuidado: "Maria Betania",
     },
@@ -30,7 +30,7 @@ export const getAssistidos = [
       tipoResidencia: "alugada",
       possuiEnergiaEletrica: false,
       possuiAguaCanalizada: false,
-      escoamentoSanitario: "srede",
+      escoamentoSanitario: "rede",
       existeColetaLixo: true,
       numeroComodosDomicilio: 5,
       numeroDormitorios: 2,
@@ -39,7 +39,11 @@ export const getAssistidos = [
       areaFortePresencaConflito: false,
     },
     composicaoFamiliar: {
-      membros: 4,
+      membros: 0,
+      integrantes: [],
+    },
+    acessoProgramasSociais: {
+      acesso: false,
     },
     acessoProgramasSociais: {
       acesso: true,
@@ -85,7 +89,16 @@ export const getAssistidos = [
       areaFortePresencaConflito: false,
     },
     composicaoFamiliar: {
-      membros: 4,
+      membros: 1,
+      integrantes: [
+        {
+          nome: "Fulana da Silva Lopes",
+          dataNasc: "2010-01-29",
+          parentesco: 1,
+          ocupacao: "Diarista",
+          renda: 1600,
+        },
+      ],
     },
     acessoProgramasSociais: {
       acesso: false,

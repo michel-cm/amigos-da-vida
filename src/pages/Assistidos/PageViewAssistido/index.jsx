@@ -5,7 +5,9 @@ import { Button } from "../../../components/Button";
 
 import { useAssistidosContext } from "../../../hooks/useAssistidosContext";
 
-import { getAssistidos } from "../../../helpers/dataAssistido";
+import { getAssistidos as assistidos } from "../../../helpers/dataAssistido";
+import { AlertCard } from "../../../components/AlertCard";
+import { TableViewComposicaoFamiliar } from "./TableViewComposicaoFamiliar";
 
 export function PageViewAssistido() {
   const { id } = useParams();
@@ -594,6 +596,17 @@ export function PageViewAssistido() {
 
           <C.ComposicaoCondicoes ref={composicaoCondicoes}>
             <h2>Composição Familiar e Condições de Rendimentos</h2>
+
+            {assistidos[id].composicaoFamiliar.membros === 0 ? (
+              <AlertCard title="Não possui membros" type="yellow" />
+            ) : (
+              <>
+                <h4>Membros</h4>
+                <TableViewComposicaoFamiliar
+                  listComposicaoFamiliar={assistidos[id].composicaoFamiliar}
+                />
+              </>
+            )}
 
             <Button title={"Adicionar membro"} />
           </C.ComposicaoCondicoes>

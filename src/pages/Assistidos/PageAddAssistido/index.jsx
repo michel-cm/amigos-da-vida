@@ -90,7 +90,75 @@ export function PageAddAssistido() {
     rg: "",
   });
 
+  const [endereco, setEndereco] = useState({
+    rua: "",
+    bairro: "",
+    municipio: "",
+    telContato: "",
+    localizacao: "urbano",
+  });
+
+  const [condicoesSaude, setCondicoesSaude] = useState({
+    diagnostico: "",
+    tratamento: "",
+    medicamentosUsoEaPosologia: "",
+    fralgaGeriatrica: false,
+    tamanho: "M",
+    necessitaCuidadosConstantesOutraPessoa: false,
+    responsavelCuidado: "",
+  });
+
+  const [condicoesHabitacionais, setCondicoesHabitacionais] = useState({
+    tipoResidencia: "alugada",
+    possuiEnergiaEletrica: true,
+    possuiAguaCanalizada: true,
+    escoamentoSanitario: "rede",
+    existeColetaLixo: true,
+    numeroComodosDomicilio: 0,
+    numeroDormitorios: 0,
+    areaDesabamentoOuAlagamento: false,
+    areaDificilAcesso: false,
+    areaFortePresencaConflito: false,
+  });
+
+  /* Códigos de Parentesco: 1-Cônjuge/ companheiro (a); 2-Filho (a); 3-Enteado (a); 4-Neto (a), Bisneto (a); 
+  5-Pai/ Mãe; 6-Sogro (a); 7-Irmão/irmã; 8-Genro/Nora; 9-Outro parente; 10-Não parente.*/
+  const [composicaoFamiliar, setComposicaoFamiliar] = useState({
+    membros: 0,
+    integrantes: [
+      {
+        nome: "",
+        dataNasc: "",
+        parentesco: 2,
+        ocupacao: "",
+        renda: 0,
+      },
+    ],
+  });
+
+  const [acessoProgramasSociais, setAcessoProgramasSociais] = useState({
+    acesso: false,
+    bolsaFamilia: {
+      acesso: false,
+      valor: 0,
+    },
+    prestacaoContinuadaBPC: {
+      acesso: false,
+      valor: 0,
+    },
+    outro: [
+      {
+        titulo: "",
+        valor: 0,
+      },
+    ],
+  });
+
   console.log(identificacao);
+  console.log(endereco);
+  console.log(condicoesSaude);
+  console.log(condicoesHabitacionais);
+
   return (
     <C.Container>
       <C.AreaContent>
@@ -300,8 +368,17 @@ export function PageAddAssistido() {
                   width: "450px",
                 }}
               >
-                <label>Endereço</label>
-                <C.Input type={"text"} />
+                <label>Rua</label>
+                <C.Input
+                  type={"text"}
+                  value={endereco.rua}
+                  onChange={(e) =>
+                    setEndereco({
+                      ...endereco,
+                      rua: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
 
               <C.AreaInputsDisplayFlex
@@ -315,7 +392,17 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Bairro</label>
-                  <C.Input type={"text"} required />
+                  <C.Input
+                    type={"text"}
+                    required
+                    value={endereco.bairro}
+                    onChange={(e) =>
+                      setEndereco({
+                        ...endereco,
+                        bairro: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -324,7 +411,16 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Município</label>
-                  <C.Input type={"text"} />
+                  <C.Input
+                    type={"text"}
+                    value={endereco.municipio}
+                    onChange={(e) =>
+                      setEndereco({
+                        ...endereco,
+                        municipio: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
 
@@ -339,7 +435,17 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Telefone de Contato</label>
-                  <C.Input type={"text"} required />
+                  <C.Input
+                    type={"text"}
+                    required
+                    value={endereco.telContato}
+                    onChange={(e) =>
+                      setEndereco({
+                        ...endereco,
+                        telContato: e.target.value,
+                      })
+                    }
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -348,14 +454,23 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Localização</label>
-                  <C.Select>
-                    <option>Urbano</option>
-                    <option>Rural</option>
+                  <C.Select
+                    value={endereco.localizacao}
+                    onChange={(e) =>
+                      setEndereco({
+                        ...endereco,
+                        localizacao: e.target.value,
+                      })
+                    }
+                  >
+                    <option value="urbano">Urbano</option>
+                    <option value="rural">Rural</option>
                   </C.Select>
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
             </C.Form>
           </C.AreaEndereco>
+
           <C.AreaCondicoesSaude ref={condicoesSaudeRef}>
             <h2>Condições de Saúde</h2>
             <C.Form>
@@ -365,7 +480,17 @@ export function PageAddAssistido() {
                 }}
               >
                 <label>Diagnóstico</label>
-                <C.Input type={"text"} required />
+                <C.Input
+                  type={"text"}
+                  required
+                  value={condicoesSaude.diagnostico}
+                  onChange={(e) =>
+                    setCondicoesSaude({
+                      ...condicoesSaude,
+                      diagnostico: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
               <C.InputColumn
                 style={{
@@ -373,7 +498,16 @@ export function PageAddAssistido() {
                 }}
               >
                 <label>Tratamento</label>
-                <C.Input type={"text"} />
+                <C.Input
+                  type={"text"}
+                  value={condicoesSaude.tratamento}
+                  onChange={(e) =>
+                    setCondicoesSaude({
+                      ...condicoesSaude,
+                      tratamento: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
               <C.InputColumn
                 style={{
@@ -381,7 +515,16 @@ export function PageAddAssistido() {
                 }}
               >
                 <label>Medicamentos que faz uso e sua posologia</label>
-                <C.TextArea rows={5} />
+                <C.TextArea
+                  rows={5}
+                  value={condicoesSaude.medicamentosUsoEaPosologia}
+                  onChange={(e) =>
+                    setCondicoesSaude({
+                      ...condicoesSaude,
+                      medicamentosUsoEaPosologia: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
               <C.AreaInputsDisplayFlex
                 style={{
@@ -395,12 +538,19 @@ export function PageAddAssistido() {
                 >
                   <label>Faz uso de fralda geriátrica?</label>
                   <C.Select
+                    value={condicoesSaude.fralgaGeriatrica}
+                    onChange={(e) =>
+                      setCondicoesSaude({
+                        ...condicoesSaude,
+                        fralgaGeriatrica: e.target.value,
+                      })
+                    }
                     style={{
                       width: "200px",
                     }}
                   >
-                    <option>Não</option>
-                    <option>Sim</option>
+                    <option value={false}>Não</option>
+                    <option value={true}>Sim</option>
                   </C.Select>
                 </C.InputColumn>
                 <C.InputColumn
@@ -409,7 +559,15 @@ export function PageAddAssistido() {
                   }}
                 >
                   <label>Tamanho</label>
-                  <C.Select>
+                  <C.Select
+                    value={condicoesSaude.tamanho}
+                    onChange={(e) =>
+                      setCondicoesSaude({
+                        ...condicoesSaude,
+                        tamanho: e.target.value,
+                      })
+                    }
+                  >
                     <option>PP</option>
                     <option>P</option>
                     <option>M</option>
@@ -427,12 +585,19 @@ export function PageAddAssistido() {
                   ou locomover-se em casa, etc.?{" "}
                 </label>
                 <C.Select
+                  value={condicoesSaude.necessitaCuidadosConstantesOutraPessoa}
+                  onChange={(e) =>
+                    setCondicoesSaude({
+                      ...condicoesSaude,
+                      necessitaCuidadosConstantesOutraPessoa: e.target.value,
+                    })
+                  }
                   style={{
                     width: "100px",
                   }}
                 >
-                  <option>Não</option>
-                  <option>Sim</option>
+                  <option value={false}>Não</option>
+                  <option value={true}>Sim</option>
                 </C.Select>
               </C.InputColumn>
               <C.InputColumn
@@ -441,7 +606,18 @@ export function PageAddAssistido() {
                 }}
               >
                 <label>Responsável pelo cuidado?</label>
-                <C.Input type={"text"} required maxLength={11} />
+                <C.Input
+                  type={"text"}
+                  required
+                  maxLength={11}
+                  value={condicoesSaude.responsavelCuidado}
+                  onChange={(e) =>
+                    setCondicoesSaude({
+                      ...condicoesSaude,
+                      responsavelCuidado: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
             </C.Form>
           </C.AreaCondicoesSaude>
@@ -457,25 +633,39 @@ export function PageAddAssistido() {
               <C.InputColumn>
                 <label>Tipo de residência</label>
                 <C.Select
+                  value={condicoesHabitacionais.tipoResidencia}
+                  onChange={(e) =>
+                    setCondicoesHabitacionais({
+                      ...condicoesHabitacionais,
+                      tipoResidencia: e.target.value,
+                    })
+                  }
                   style={{
                     width: "8rem",
                   }}
                 >
-                  <option>Alugada </option>
-                  <option>Própria </option>
-                  <option>Cedida </option>
-                  <option>Ocupada </option>
+                  <option value="alugada">Alugada </option>
+                  <option value="propria">Própria </option>
+                  <option value="cedida">Cedida </option>
+                  <option value="ocupada">Ocupada </option>
                 </C.Select>
               </C.InputColumn>
               <C.InputColumn>
                 <label>Possui acesso à energia elétrica? </label>
                 <C.Select
+                  value={condicoesHabitacionais.possuiEnergiaEletrica}
+                  onChange={(e) =>
+                    setCondicoesHabitacionais({
+                      ...condicoesHabitacionais,
+                      possuiEnergiaEletrica: e.target.value,
+                    })
+                  }
                   style={{
                     width: "15rem",
                   }}
                 >
-                  <option>Sim </option>
-                  <option>Não </option>
+                  <option value={true}>Sim </option>
+                  <option value={false}>Não </option>
                 </C.Select>
               </C.InputColumn>
             </C.AreaInputsDisplayFlex>
@@ -487,37 +677,60 @@ export function PageAddAssistido() {
               <C.InputColumn>
                 <label>Possui água canalizada? </label>
                 <C.Select
+                  value={condicoesHabitacionais.possuiAguaCanalizada}
+                  onChange={(e) =>
+                    setCondicoesHabitacionais({
+                      ...condicoesHabitacionais,
+                      possuiAguaCanalizada: e.target.value,
+                    })
+                  }
                   style={{
                     width: "11rem",
                   }}
                 >
-                  <option>Sim </option>
-                  <option>Não </option>
+                  <option value={true}>Sim </option>
+                  <option value={false}>Não </option>
                 </C.Select>
               </C.InputColumn>
               <C.InputColumn>
                 <label>Escoamento sanitário: </label>
                 <C.Select
+                  value={condicoesHabitacionais.escoamentoSanitario}
+                  onChange={(e) =>
+                    setCondicoesHabitacionais({
+                      ...condicoesHabitacionais,
+                      escoamentoSanitario: e.target.value,
+                    })
+                  }
                   style={{
                     width: "15rem",
                   }}
                 >
-                  <option>Rede coletora de esgoto </option>
-                  <option>Fossa séptica ou rudimentar </option>
-                  <option>Direto para vala, rio, lago ou mar </option>
-                  <option>Domicilio sem banheiro </option>
+                  <option value="rede">Rede coletora de esgoto </option>
+                  <option value="fossa">Fossa séptica ou rudimentar </option>
+                  <option value="direto">
+                    Direto para vala, rio, lago ou mar
+                  </option>
+                  <option value="semBanheiro">Domicilio sem banheiro </option>
                 </C.Select>
               </C.InputColumn>
             </C.AreaInputsDisplayFlex>
             <C.InputColumn>
               <label>Existe coleta de lixo: </label>
               <C.Select
+                value={condicoesHabitacionais.existeColetaLixo}
+                onChange={(e) =>
+                  setCondicoesHabitacionais({
+                    ...condicoesHabitacionais,
+                    existeColetaLixo: e.target.value,
+                  })
+                }
                 style={{
                   width: "9rem",
                 }}
               >
-                <option>Sim </option>
-                <option>Não </option>
+                <option value={true}>Sim </option>
+                <option value={false}>Não </option>
               </C.Select>
             </C.InputColumn>
             <C.AreaInputsDisplayFlex
@@ -527,11 +740,27 @@ export function PageAddAssistido() {
             >
               <C.InputColumn>
                 <label>Número de cômodos no domicílio</label>
-                <C.Input type={"number"} />
+                <C.Input
+                  type={"number"}
+                  value={condicoesHabitacionais.numeroComodosDomicilio}
+                  onChange={(e) =>
+                    setCondicoesHabitacionais({
+                      ...condicoesHabitacionais,
+                      numeroComodosDomicilio: e.target.value,
+                    })
+                  }
+                />
               </C.InputColumn>
               <C.InputColumn>
                 <label>Número de dormitórios</label>
                 <C.Input
+                  value={condicoesHabitacionais.numeroDormitorios}
+                  onChange={(e) =>
+                    setCondicoesHabitacionais({
+                      ...condicoesHabitacionais,
+                      numeroDormitorios: e.target.value,
+                    })
+                  }
                   type={"number"}
                   style={{
                     width: "10rem",
@@ -546,12 +775,19 @@ export function PageAddAssistido() {
                 alagamento?{" "}
               </label>
               <C.Select
+                value={condicoesHabitacionais.areaDesabamentoOuAlagamento}
+                onChange={(e) =>
+                  setCondicoesHabitacionais({
+                    ...condicoesHabitacionais,
+                    areaDesabamentoOuAlagamento: e.target.value,
+                  })
+                }
                 style={{
                   width: "11rem",
                 }}
               >
-                <option>Não </option>
-                <option>Sim </option>
+                <option value={false}>Não </option>
+                <option value={true}>Sim </option>
               </C.Select>
             </C.InputColumn>
             <C.InputColumn>
@@ -559,12 +795,19 @@ export function PageAddAssistido() {
                 O domicilio é localizado em área de difícil acesso geográfico?{" "}
               </label>
               <C.Select
+                value={condicoesHabitacionais.areaDificilAcesso}
+                onChange={(e) =>
+                  setCondicoesHabitacionais({
+                    ...condicoesHabitacionais,
+                    areaDificilAcesso: e.target.value,
+                  })
+                }
                 style={{
                   width: "10rem",
                 }}
               >
-                <option>Não </option>
-                <option>Sim </option>
+                <option value={false}>Não </option>
+                <option value={true}>Sim </option>
               </C.Select>
             </C.InputColumn>
             <C.InputColumn>
@@ -573,12 +816,19 @@ export function PageAddAssistido() {
                 conflito/violência?
               </label>
               <C.Select
+                value={condicoesHabitacionais.areaFortePresencaConflito}
+                onChange={(e) =>
+                  setCondicoesHabitacionais({
+                    ...condicoesHabitacionais,
+                    areaFortePresencaConflito: e.target.value,
+                  })
+                }
                 style={{
                   width: "10rem",
                 }}
               >
-                <option>Não </option>
-                <option>Sim </option>
+                <option value={false}>Não </option>
+                <option value={true}>Sim </option>
               </C.Select>
             </C.InputColumn>
           </C.AreaCondicoesHabitacionais>
