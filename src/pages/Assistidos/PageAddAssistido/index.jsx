@@ -70,7 +70,7 @@ export function PageAddAssistido() {
     } else {
       setActiveComposicaoCondicoes("disable");
     }
-    if (window.scrollY >= programasSociaisRef.current.offsetTop - 180) {
+    if (window.scrollY >= programasSociaisRef.current.offsetTop - 200) {
       setActiveProgramasSociais("active");
     } else {
       setActiveProgramasSociais("disable");

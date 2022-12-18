@@ -621,8 +621,7 @@ export function PageViewAssistido() {
 
             <C.InputColumn>
               <label>
-                A família ou algum de seus membros possui recebe algum
-                benefício?
+                A família ou algum de seus membros possui algum benefício?
               </label>
               <C.Select
                 value={assistidos[id].acessoProgramasSociais.acesso}
@@ -634,7 +633,99 @@ export function PageViewAssistido() {
                 <option value={true}>Sim </option>
               </C.Select>
             </C.InputColumn>
-            <Button title={"Cadastrar Benefício"} />
+            {assistidos[id].acessoProgramasSociais.acesso ? (
+              <>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="bolsaFamilia"
+                    checked={
+                      assistidos[id].acessoProgramasSociais.programas[0]
+                        .bolsaFamilia
+                    }
+                  />
+                  <label htmlFor="bolsaFamilia">
+                    {" "}
+                    Benefício do Programa Bolsa Família.
+                  </label>
+                  <input
+                    type="number"
+                    value={
+                      assistidos[id].acessoProgramasSociais.programas[0].valor
+                    }
+                    style={{
+                      width: "60px",
+                      padding: "1px",
+                      background: "#000",
+                    }}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="bolsaFamilia"
+                    checked={
+                      assistidos[id].acessoProgramasSociais.programas[1]
+                        .prestacaoContinuadaBPC
+                    }
+                  />
+                  <label htmlFor="bolsaFamilia">
+                    {" "}
+                    Benefício de Prestação Continuada-BPC.
+                  </label>
+                  <input
+                    type="number"
+                    value={
+                      assistidos[id].acessoProgramasSociais.programas[1].valor
+                    }
+                    style={{
+                      width: "60px",
+                      padding: "1px",
+                      background: "#000",
+                    }}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="bolsaFamilia"
+                    checked={
+                      assistidos[id].acessoProgramasSociais.programas[2].outros
+                    }
+                  />
+                  <label htmlFor="bolsaFamilia"> Outros. Qual?</label>
+                  <input
+                    type="number"
+                    value={
+                      assistidos[id].acessoProgramasSociais.programas[2].valor
+                    }
+                    style={{
+                      width: "60px",
+                      padding: "1px",
+                      background: "#000",
+                    }}
+                  />
+                </div>
+                <textarea
+                  name=""
+                  id=""
+                  cols="40"
+                  rows="3"
+                  style={{
+                    padding: "4px",
+                    background: "#000",
+                    color: "#F8F8F8",
+                  }}
+                ></textarea>
+                <div>
+                  <p>
+                    Valor: {assistidos[id].acessoProgramasSociais.valorTotal}
+                  </p>
+                </div>
+              </>
+            ) : (
+              <div></div>
+            )}
           </C.ProgramasSociais>
         </C.Contentregistration>
       </C.AreaContent>

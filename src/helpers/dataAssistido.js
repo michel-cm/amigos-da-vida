@@ -43,11 +43,21 @@ export const getAssistidos = [
       integrantes: [],
     },
     acessoProgramasSociais: {
-      acesso: false,
-    },
-    acessoProgramasSociais: {
       acesso: true,
+      programas: [
+        {
+          bolsaFamilia: true,
+          valor: 600,
+        },
+        {
+          prestacaoContinuadaBPC: false,
+          valor: 0,
+        },
+        { outros: false, descricao: "", valor: 0 },
+      ],
+      valorTotal: 600,
     },
+    
   },
   {
     identificacao: {
@@ -102,6 +112,18 @@ export const getAssistidos = [
     },
     acessoProgramasSociais: {
       acesso: false,
+      programas: [
+        {
+          bolsaFamilia: false,
+          valor: 0,
+        },
+        {
+          prestacaoContinuadaBPC: false,
+          valor: 0,
+        },
+        { outros: false, descricao: "", valor: 0 },
+      ],
+      valorTotal: 0,
     },
   },
 ];
