@@ -706,20 +706,27 @@ export function PageViewAssistido() {
                     }}
                   />
                 </div>
-                <textarea
-                  name=""
-                  id=""
-                  cols="40"
-                  rows="3"
-                  style={{
-                    padding: "4px",
-                    background: "#000",
-                    color: "#F8F8F8",
-                  }}
-                ></textarea>
-                <div>
+                {assistidos[id].acessoProgramasSociais.programas[2].outros ? (
+                  <textarea
+                    value={
+                      assistidos[id].acessoProgramasSociais.programas[2]
+                        .descricao
+                    }
+                    cols="40"
+                    rows="3"
+                    style={{
+                      padding: "4px",
+                      background: "#000",
+                      color: "#F8F8F8",
+                    }}
+                  ></textarea>
+                ) : (
+                  <div></div>
+                )}
+                <div style={{ marginTop: "8px" }}>
                   <p>
-                    Valor: {assistidos[id].acessoProgramasSociais.valorTotal}
+                    Valor Total:{" "}
+                    {assistidos[id].acessoProgramasSociais.valorTotal}
                   </p>
                 </div>
               </>

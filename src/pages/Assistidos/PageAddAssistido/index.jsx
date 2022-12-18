@@ -1,6 +1,7 @@
 import * as C from "./styles";
 import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
+import { ModalMembroFamilia } from "../ModalMembroFamilia";
 
 export function PageAddAssistido() {
   /* SCROLL \/ */
@@ -138,26 +139,24 @@ export function PageAddAssistido() {
 
   const [acessoProgramasSociais, setAcessoProgramasSociais] = useState({
     acesso: false,
-    bolsaFamilia: {
-      acesso: false,
-      valor: 0,
-    },
-    prestacaoContinuadaBPC: {
-      acesso: false,
-      valor: 0,
-    },
-    outro: [
+    programas: [
       {
-        titulo: "",
+        bolsaFamilia: false,
         valor: 0,
       },
+      {
+        prestacaoContinuadaBPC: false,
+        valor: 0,
+      },
+      { outros: false, descricao: "", valor: 0 },
     ],
+    valorTotal: 0,
   });
 
-  console.log(identificacao);
-  console.log(endereco);
-  console.log(condicoesSaude);
-  console.log(condicoesHabitacionais);
+  const [modalMembroFamiliaOpen, setModalMembroFamiliaOpen] = useState(false);
+  function openModal() {
+    setModalMembroFamiliaOpen(true);
+  }
 
   return (
     <C.Container>
@@ -605,19 +604,28 @@ export function PageAddAssistido() {
                   width: "300px",
                 }}
               >
-                <label>Responsável pelo cuidado?</label>
-                <C.Input
-                  type={"text"}
-                  required
-                  maxLength={11}
-                  value={condicoesSaude.responsavelCuidado}
-                  onChange={(e) =>
-                    setCondicoesSaude({
-                      ...condicoesSaude,
-                      responsavelCuidado: e.target.value,
-                    })
-                  }
-                />
+                {condicoesSaude.necessitaCuidadosConstantesOutraPessoa !==
+                  false &&
+                condicoesSaude.necessitaCuidadosConstantesOutraPessoa !==
+                  "false" ? (
+                  <>
+                    <label>Responsável pelo cuidado?</label>
+                    <C.Input
+                      type={"text"}
+                      required
+                      maxLength={11}
+                      value={condicoesSaude.responsavelCuidado}
+                      onChange={(e) =>
+                        setCondicoesSaude({
+                          ...condicoesSaude,
+                          responsavelCuidado: e.target.value,
+                        })
+                      }
+                    />
+                  </>
+                ) : (
+                  <div></div>
+                )}
               </C.InputColumn>
             </C.Form>
           </C.AreaCondicoesSaude>
@@ -836,7 +844,11 @@ export function PageAddAssistido() {
           <C.ComposicaoCondicoes ref={composicaoCondicoesRef}>
             <h2>Composição Familiar e Condições de Rendimentos</h2>
 
-            <Button title={"Adicionar membro"} />
+            <Button title={"Adicionar membro"} fn={openModal} />
+
+            {modalMembroFamiliaOpen && (
+              <ModalMembroFamilia setModal={setModalMembroFamiliaOpen} />
+            )}
           </C.ComposicaoCondicoes>
           <C.ProgramasSociais ref={programasSociaisRef}>
             <h2>Acesso a Programas Sociais</h2>
@@ -850,12 +862,100 @@ export function PageAddAssistido() {
                 style={{
                   width: "10rem",
                 }}
+                onChange={(e) =>
+                  setAcessoProgramasSociais({
+                    ...acessoProgramasSociais,
+                    acesso: e.target.value,
+                  })
+                }
               >
-                <option>Não </option>
-                <option>Sim </option>
+                <option value={false}>Não </option>
+                <option value={true}>Sim </option>
               </C.Select>
             </C.InputColumn>
-            <Button title={"Cadastrar Benefício"} />
+            {acessoProgramasSociais.acesso !== false &&
+            acessoProgramasSociais.acesso !== "false" ? (
+              <>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="bolsaFamilia"
+                    checked={acessoProgramasSociais.programas[0].bolsaFamilia}
+                  />
+                  <label htmlFor="bolsaFamilia">
+                    {" "}
+                    Benefício do Programa Bolsa Família.
+                  </label>
+                  <input
+                    type="number"
+                    value={acessoProgramasSociais.programas[0].valor}
+                    style={{
+                      width: "60px",
+                      padding: "1px",
+                      background: "#000",
+                    }}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="bolsaFamilia"
+                    checked={
+                      acessoProgramasSociais.programas[1].prestacaoContinuadaBPC
+                    }
+                  />
+                  <label htmlFor="bolsaFamilia">
+                    {" "}
+                    Benefício de Prestação Continuada-BPC.
+                  </label>
+                  <input
+                    type="number"
+                    value={acessoProgramasSociais.programas[1].valor}
+                    style={{
+                      width: "60px",
+                      padding: "1px",
+                      background: "#000",
+                    }}
+                  />
+                </div>
+                <div>
+                  <input
+                    type="checkbox"
+                    name="bolsaFamilia"
+                    checked={acessoProgramasSociais.programas[2].outros}
+                  />
+                  <label htmlFor="bolsaFamilia"> Outros. Qual?</label>
+                  <input
+                    type="number"
+                    value={acessoProgramasSociais.programas[2].valor}
+                    style={{
+                      width: "60px",
+                      padding: "1px",
+                      background: "#000",
+                    }}
+                  />
+                </div>
+                {acessoProgramasSociais.programas[2].outros ? (
+                  <textarea
+                    value={acessoProgramasSociais.programas[2].descricao}
+                    cols="40"
+                    rows="3"
+                    style={{
+                      padding: "4px",
+                      background: "#000",
+                      color: "#F8F8F8",
+                    }}
+                  ></textarea>
+                ) : (
+                  <div></div>
+                )}
+                <div style={{ marginTop: "8px" }}>
+                  <p>Valor Total: {acessoProgramasSociais.valorTotal}</p>
+                </div>
+              </>
+            ) : (
+              <div></div>
+            )}
           </C.ProgramasSociais>
         </C.Contentregistration>
       </C.AreaContent>
