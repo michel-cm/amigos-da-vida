@@ -4,13 +4,25 @@ import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
 
 import { useAssistidosContext } from "../../../hooks/useAssistidosContext";
-
-import { getAssistidos as assistidos } from "../../../helpers/dataAssistido";
 import { AlertCard } from "../../../components/AlertCard";
 import { TableViewComposicaoFamiliar } from "./TableViewComposicaoFamiliar";
+import { useEffect } from "react";
+import { formatDate } from "../../../helpers/dateFilter";
 
 export function PageViewAssistido() {
   const { id } = useParams();
+
+  const { listAssistidos, getAssistidoForId } = useAssistidosContext();
+
+  const [assistidoView, setAssistidoView] = useState({});
+
+  useEffect(() => {
+    if (listAssistidos.length > 0) {
+      setAssistidoView(getAssistidoForId(id));
+    }
+  }, [listAssistidos]);
+
+  console.log(assistidoView);
 
   const identificacao = useRef(0);
   const endereco = useRef(0);
@@ -149,7 +161,10 @@ export function PageViewAssistido() {
                 <C.Input
                   type={"text"}
                   required
-                  value={assistidos[id].identificacao.nome}
+                  value={
+                    assistidoView.length > 0 &&
+                    assistidoView[0].identificacao.nome
+                  }
                 />
               </C.InputColumn>
 
@@ -161,7 +176,10 @@ export function PageViewAssistido() {
                 <label>Nome da mãe</label>
                 <C.Input
                   type={"text"}
-                  value={assistidos[id].identificacao.nomeMae}
+                  value={
+                    assistidoView.length > 0 &&
+                    assistidoView[0].identificacao.nomeMae
+                  }
                 />
               </C.InputColumn>
 
@@ -176,7 +194,16 @@ export function PageViewAssistido() {
                   }}
                 >
                   <label>Data nascimento</label>
-                  <C.Input type={"date"} required value="2017-06-01" />
+                  <C.Input
+                    type={"date"}
+                    required
+                    value={
+                      assistidoView.length > 0 &&
+                     
+                        assistidoView[0].identificacao.dataNasc.seconds * 1000
+                     
+                    }
+                  />
                 </C.InputColumn>
 
                 <C.InputColumn
@@ -187,17 +214,24 @@ export function PageViewAssistido() {
                   <label>Nascido em</label>
                   <C.Input
                     type={"text"}
-                    value={assistidos[id].identificacao.nascidoEm}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].identificacao.nascidoEm
+                    }
                   />
                 </C.InputColumn>
-
                 <C.InputColumn
                   style={{
                     width: "105px",
                   }}
                 >
                   <label>Estado Civil</label>
-                  <C.Select value={assistidos[id].identificacao.estadoCivil}>
+                  <C.Select
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].identificacao.estadoCivil
+                    }
+                  >
                     <option value={"solteiro"}>Solteiro</option>
                     <option value={"casado"}>Casado</option>
                     <option value={"viuvo"}>Viúvo</option>
@@ -220,7 +254,10 @@ export function PageViewAssistido() {
                     type={"text"}
                     required
                     maxLength={11}
-                    value={assistidos[id].identificacao.cpf}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].identificacao.cpf
+                    }
                   />
                 </C.InputColumn>
 
@@ -233,7 +270,10 @@ export function PageViewAssistido() {
                   <C.Input
                     type={"text"}
                     maxLength={12}
-                    value={assistidos[id].identificacao.rg}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].identificacao.rg
+                    }
                   />
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
@@ -249,7 +289,12 @@ export function PageViewAssistido() {
                 }}
               >
                 <label>Endereço</label>
-                <C.Input type={"text"} value={assistidos[id].endereco.rua} />
+                <C.Input
+                  type={"text"}
+                  value={
+                    assistidoView.length > 0 && assistidoView[0].endereco.rua
+                  }
+                />
               </C.InputColumn>
 
               <C.AreaInputsDisplayFlex
@@ -266,7 +311,10 @@ export function PageViewAssistido() {
                   <C.Input
                     type={"text"}
                     required
-                    value={assistidos[id].endereco.bairro}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].endereco.bairro
+                    }
                   />
                 </C.InputColumn>
 
@@ -278,7 +326,10 @@ export function PageViewAssistido() {
                   <label>Município</label>
                   <C.Input
                     type={"text"}
-                    value={assistidos[id].endereco.municipio}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].endereco.municipio
+                    }
                   />
                 </C.InputColumn>
               </C.AreaInputsDisplayFlex>
@@ -297,7 +348,10 @@ export function PageViewAssistido() {
                   <C.Input
                     type={"text"}
                     required
-                    value={assistidos[id].endereco.telContato}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].endereco.telContato
+                    }
                   />
                 </C.InputColumn>
 
@@ -307,7 +361,12 @@ export function PageViewAssistido() {
                   }}
                 >
                   <label>Localização</label>
-                  <C.Select value={assistidos[id].endereco.localizacao}>
+                  <C.Select
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].endereco.localizacao
+                    }
+                  >
                     <option value="urbano">Urbano</option>
                     <option value="rural">Rural</option>
                   </C.Select>
@@ -327,7 +386,10 @@ export function PageViewAssistido() {
                 <C.Input
                   type={"text"}
                   required
-                  value={assistidos[id].condicoesSaude.diagnostico}
+                  value={
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesSaude.diagnostico
+                  }
                 />
               </C.InputColumn>
               <C.InputColumn
@@ -338,7 +400,10 @@ export function PageViewAssistido() {
                 <label>Tratamento</label>
                 <C.Input
                   type={"text"}
-                  value={assistidos[id].condicoesSaude.tratamento}
+                  value={
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesSaude.tratamento
+                  }
                 />
               </C.InputColumn>
               <C.InputColumn
@@ -350,7 +415,8 @@ export function PageViewAssistido() {
                 <C.TextArea
                   rows={5}
                   value={
-                    assistidos[id].condicoesSaude.medicamentosUsoEaPosologia
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesSaude.medicamentosUsoEaPosologia
                   }
                 />
               </C.InputColumn>
@@ -366,7 +432,10 @@ export function PageViewAssistido() {
                 >
                   <label>Faz uso de fralda geriátrica?</label>
                   <C.Select
-                    value={assistidos[id].condicoesSaude.fralgaGeriatrica}
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].condicoesSaude.fraldaGeriatrica
+                    }
                     style={{
                       width: "200px",
                     }}
@@ -381,7 +450,12 @@ export function PageViewAssistido() {
                   }}
                 >
                   <label>Tamanho</label>
-                  <C.Select value={assistidos[id].condicoesSaude.tamanho}>
+                  <C.Select
+                    value={
+                      assistidoView.length > 0 &&
+                      assistidoView[0].condicoesSaude.tamanho
+                    }
+                  >
                     <option value="pp">PP</option>
                     <option value="p">P</option>
                     <option value="m">M</option>
@@ -400,7 +474,8 @@ export function PageViewAssistido() {
                 </label>
                 <C.Select
                   value={
-                    assistidos[id].condicoesSaude
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesSaude
                       .necessitaCuidadosConstantesOutraPessoa
                   }
                   style={{
@@ -421,7 +496,10 @@ export function PageViewAssistido() {
                   type={"text"}
                   required
                   maxLength={11}
-                  value={assistidos[id].condicoesSaude.responsavelCuidado}
+                  value={
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesSaude.responsavelCuidado
+                  }
                 />
               </C.InputColumn>
             </fomr>
@@ -438,7 +516,10 @@ export function PageViewAssistido() {
               <C.InputColumn>
                 <label>Tipo de residência</label>
                 <C.Select
-                  value={assistidos[id].condicoesHabitacionais.tipoResidencia}
+                  value={
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesHabitacionais.tipoResidencia
+                  }
                   style={{
                     width: "8rem",
                   }}
@@ -453,7 +534,9 @@ export function PageViewAssistido() {
                 <label>Possui acesso à energia elétrica? </label>
                 <C.Select
                   value={
-                    assistidos[id].condicoesHabitacionais.possuiEnergiaEletrica
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesHabitacionais
+                      .possuiEnergiaEletrica
                   }
                   style={{
                     width: "15rem",
@@ -473,7 +556,8 @@ export function PageViewAssistido() {
                 <label>Possui água canalizada? </label>
                 <C.Select
                   value={
-                    assistidos[id].condicoesHabitacionais.possuiAguaCanalizada
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesHabitacionais.possuiAguaCanalizada
                   }
                   style={{
                     width: "11rem",
@@ -487,7 +571,8 @@ export function PageViewAssistido() {
                 <label>Escoamento sanitário: </label>
                 <C.Select
                   value={
-                    assistidos[id].condicoesHabitacionais.escoamentoSanitario
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesHabitacionais.escoamentoSanitario
                   }
                   style={{
                     width: "15rem",
@@ -505,7 +590,10 @@ export function PageViewAssistido() {
             <C.InputColumn>
               <label>Existe coleta de lixo: </label>
               <C.Select
-                value={assistidos[id].condicoesHabitacionais.existeColetaLixo}
+                value={
+                  assistidoView.length > 0 &&
+                  assistidoView[0].condicoesHabitacionais.existeColetaLixo
+                }
                 style={{
                   width: "9rem",
                 }}
@@ -524,7 +612,9 @@ export function PageViewAssistido() {
                 <C.Input
                   type={"number"}
                   value={
-                    assistidos[id].condicoesHabitacionais.numeroComodosDomicilio
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesHabitacionais
+                      .numeroComodosDomicilio
                   }
                 />
               </C.InputColumn>
@@ -532,7 +622,8 @@ export function PageViewAssistido() {
                 <label>Número de dormitórios</label>
                 <C.Input
                   value={
-                    assistidos[id].condicoesHabitacionais.numeroDormitorios
+                    assistidoView.length > 0 &&
+                    assistidoView[0].condicoesHabitacionais.numeroDormitorios
                   }
                   type={"number"}
                   style={{
@@ -549,7 +640,8 @@ export function PageViewAssistido() {
               </label>
               <C.Select
                 value={
-                  assistidos[id].condicoesHabitacionais
+                  assistidoView.length > 0 &&
+                  assistidoView[0].condicoesHabitacionais
                     .areaDesabamentoOuAlagamento
                 }
                 style={{
@@ -565,7 +657,10 @@ export function PageViewAssistido() {
                 O domicilio é localizado em área de difícil acesso geográfico?{" "}
               </label>
               <C.Select
-                value={assistidos[id].condicoesHabitacionais.areaDificilAcesso}
+                value={
+                  assistidoView.length > 0 &&
+                  assistidoView[0].condicoesHabitacionais.areaDificilAcesso
+                }
                 style={{
                   width: "10rem",
                 }}
@@ -581,7 +676,8 @@ export function PageViewAssistido() {
               </label>
               <C.Select
                 value={
-                  assistidos[id].condicoesHabitacionais
+                  assistidoView.length > 0 &&
+                  assistidoView[0].condicoesHabitacionais
                     .areaFortePresencaConflito
                 }
                 style={{
@@ -597,15 +693,19 @@ export function PageViewAssistido() {
           <C.ComposicaoCondicoes ref={composicaoCondicoes}>
             <h2>Composição Familiar e Condições de Rendimentos</h2>
 
-            {assistidos[id].composicaoFamiliar.membros === 0 ? (
-              <AlertCard title="Não possui membros" type="yellow" />
+            {assistidoView.length > 0 ? (
+              assistidoView[0].composicaoFamiliar.length == 0 ? (
+                <AlertCard title="Não possui membros" type="yellow" />
+              ) : (
+                <>
+                  <h4>Membros</h4>
+                  <TableViewComposicaoFamiliar
+                    listComposicaoFamiliar={assistidoView[0].composicaoFamiliar}
+                  />
+                </>
+              )
             ) : (
-              <>
-                <h4>Membros</h4>
-                <TableViewComposicaoFamiliar
-                  listComposicaoFamiliar={assistidos[id].composicaoFamiliar}
-                />
-              </>
+              <div></div>
             )}
             <div
               style={{
@@ -624,7 +724,10 @@ export function PageViewAssistido() {
                 A família ou algum de seus membros possui algum benefício?
               </label>
               <C.Select
-                value={assistidos[id].acessoProgramasSociais.acesso}
+                value={
+                  assistidoView.length > 0 &&
+                  assistidoView[0].acessoProgramasSociais.acesso
+                }
                 style={{
                   width: "10rem",
                 }}
@@ -633,14 +736,14 @@ export function PageViewAssistido() {
                 <option value={true}>Sim </option>
               </C.Select>
             </C.InputColumn>
-            {assistidos[id].acessoProgramasSociais.acesso ? (
+            {assistidoView.length > 0 ? (
               <>
                 <div>
                   <input
                     type="checkbox"
                     name="bolsaFamilia"
                     checked={
-                      assistidos[id].acessoProgramasSociais.programas[0]
+                      assistidoView[0].acessoProgramasSociais.programas[0]
                         .bolsaFamilia
                     }
                   />
@@ -651,7 +754,7 @@ export function PageViewAssistido() {
                   <input
                     type="number"
                     value={
-                      assistidos[id].acessoProgramasSociais.programas[0].valor
+                      assistidoView[0].acessoProgramasSociais.programas[0].valor
                     }
                     style={{
                       width: "60px",
@@ -665,7 +768,7 @@ export function PageViewAssistido() {
                     type="checkbox"
                     name="bolsaFamilia"
                     checked={
-                      assistidos[id].acessoProgramasSociais.programas[1]
+                      assistidoView[0].acessoProgramasSociais.programas[1]
                         .prestacaoContinuadaBPC
                     }
                   />
@@ -676,7 +779,7 @@ export function PageViewAssistido() {
                   <input
                     type="number"
                     value={
-                      assistidos[id].acessoProgramasSociais.programas[1].valor
+                      assistidoView[0].acessoProgramasSociais.programas[1].valor
                     }
                     style={{
                       width: "60px",
@@ -690,14 +793,15 @@ export function PageViewAssistido() {
                     type="checkbox"
                     name="bolsaFamilia"
                     checked={
-                      assistidos[id].acessoProgramasSociais.programas[2].outros
+                      assistidoView[0].acessoProgramasSociais.programas[2]
+                        .outros
                     }
                   />
                   <label htmlFor="bolsaFamilia"> Outros. Qual?</label>
                   <input
                     type="number"
                     value={
-                      assistidos[id].acessoProgramasSociais.programas[2].valor
+                      assistidoView[0].acessoProgramasSociais.programas[2].valor
                     }
                     style={{
                       width: "60px",
@@ -706,10 +810,10 @@ export function PageViewAssistido() {
                     }}
                   />
                 </div>
-                {assistidos[id].acessoProgramasSociais.programas[2].outros ? (
+                {assistidoView[0].acessoProgramasSociais.programas[2].outros ? (
                   <textarea
                     value={
-                      assistidos[id].acessoProgramasSociais.programas[2]
+                      assistidoView[0].acessoProgramasSociais.programas[2]
                         .descricao
                     }
                     cols="40"
@@ -726,7 +830,7 @@ export function PageViewAssistido() {
                 <div style={{ marginTop: "8px" }}>
                   <p>
                     Valor Total:{" "}
-                    {assistidos[id].acessoProgramasSociais.valorTotal}
+                    {assistidoView[0].acessoProgramasSociais.valorTotal}
                   </p>
                 </div>
               </>

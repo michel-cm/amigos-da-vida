@@ -4,6 +4,7 @@ import { BsFillTrashFill } from "react-icons/bs";
 import { BsFillEyeFill } from "react-icons/bs";
 
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../../../helpers/dateFilter";
 
 export function TableViewComposicaoFamiliar({ listComposicaoFamiliar }) {
   const navigate = useNavigate();
@@ -45,7 +46,7 @@ export function TableViewComposicaoFamiliar({ listComposicaoFamiliar }) {
                 return (
                   <tr key={index}>
                     <td>{membro.nome}</td>
-                    <td>{membro.dataNasc}</td>
+                    <td>{formatDate(membro.dataNasc.toDate())}</td>
                     <td>
                       <C.Select value={membro.parentesco } disabled>
                         {parentesco.map((item, index) => {

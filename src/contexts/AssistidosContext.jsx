@@ -14,19 +14,31 @@ export function AssistidosContextProvider({ children }) {
     });
   }, []);
 
+  async function addNewAssistido(assistido) {
+    await Api.addNewAssistido(assistido).catch((err) => console.log(err));
+  }
+
+  function getAssistidoForId(id) {
+    const assistidoFiltered = listAssistidos.filter((assistido) => {
+      return assistido.id == id;
+    });
+    return assistidoFiltered;
+  }
+
   useEffect(() => {
     if (listAssistidos.length === 0) {
       getAllAssistidos();
     }
   }, [listAssistidos]);
 
-  console.log(listAssistidos);
+ 
 
   return (
     <AssistidosContext.Provider
       value={{
         listAssistidos,
         getAllAssistidos,
+        getAssistidoForId
       }}
     >
       {children}

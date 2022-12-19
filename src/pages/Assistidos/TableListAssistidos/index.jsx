@@ -22,6 +22,7 @@ export function TableListAssistidos({ listAssistidos }) {
     navigate(`/assistidos/adicionar`);
   }
 
+  function handleDeleteAssistido(id) {}
 
   return (
     <C.Container>
@@ -43,7 +44,7 @@ export function TableListAssistidos({ listAssistidos }) {
               <tr>
                 <th>Nome</th>
                 <th>CPF</th>
-                <th>Responsável</th>
+                <th>Municipio</th>
                 <th>Tel</th>
                 <th>Empréstimo</th>
                 <th></th>
@@ -57,13 +58,15 @@ export function TableListAssistidos({ listAssistidos }) {
                       <td>{assistido.identificacao.nome}</td>
 
                       <td>{assistido.identificacao.cpf}</td>
-                      <td>{assistido.identificacao.nascidoEm}</td>
+                      <td>{assistido.endereco.municipio}</td>
                       <td>{assistido.endereco.telContato}</td>
                       <td>
                         <C.Status statusColor="red"></C.Status>
                       </td>
                       <td>
-                        <C.AreaIcon onClick={() => handleViewAssistido(index)}>
+                        <C.AreaIcon
+                          onClick={() => handleViewAssistido(assistido.id)}
+                        >
                           <BsFillEyeFill
                             style={{
                               fontSize: "16px",
@@ -72,7 +75,9 @@ export function TableListAssistidos({ listAssistidos }) {
                             }}
                           />
                         </C.AreaIcon>
-                        <C.AreaIcon onClick={() => handleViewCandidate(index)}>
+                        <C.AreaIcon
+                          onClick={() => handleDeleteAssistido(index)}
+                        >
                           <BsFillTrashFill
                             style={{
                               fontSize: "16px",

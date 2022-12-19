@@ -13,6 +13,8 @@ export const Api = {
   getAllAssistidos: async () => {
     const list = [];
 
+    console.log('API GETALLASSISTIDOS')
+
     let results = await getDocs(collection(database, "assistidos"));
     results.forEach((result) => {
       let data = result.data();
@@ -29,16 +31,16 @@ export const Api = {
     return list;
   },
 
-  addNewAssistido: async ({
-    identificacao,
-    endereco,
-    condicoesSaude,
-    condicoesHabitacionais,
-    composicaoFamiliar,
-    acessoProgramasSociais,
-  }) => {
+  /*identificacao,
+  endereco,
+  condicoesSaude,
+  condicoesHabitacionais,
+  composicaoFamiliar,
+  acessoProgramasSociais,*/
+  addNewAssistido: async (assistido) => {
     await database.collection("assistidos").doc().set(
-      {
+      assistido
+      /* {
         identificacao: {
           identificacao,
         },
@@ -57,8 +59,7 @@ export const Api = {
         acessoProgramasSociais: {
           acessoProgramasSociais,
         },
-      },
-      { merge: true }
+      },*/
     );
   },
 
