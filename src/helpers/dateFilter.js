@@ -34,6 +34,15 @@ export const formatDate = (date) => {
   return `${addZeroToDate(day)}/${addZeroToDate(month)}/${year}`;
 };
 
+export const formatDateStemp = (date) => {
+  // formatar data para padrao pt-br e exibição
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+
+  return `${year}-${(month)}-${day}`;
+};
+
 export const formatCurrentMonth = (currentMonth) => {
   let [year, month] = currentMonth.split("-");
   let months = [

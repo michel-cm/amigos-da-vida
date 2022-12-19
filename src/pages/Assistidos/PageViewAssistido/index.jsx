@@ -7,7 +7,7 @@ import { useAssistidosContext } from "../../../hooks/useAssistidosContext";
 import { AlertCard } from "../../../components/AlertCard";
 import { TableViewComposicaoFamiliar } from "./TableViewComposicaoFamiliar";
 import { useEffect } from "react";
-import { formatDate } from "../../../helpers/dateFilter";
+import { formatDate, formatDateStemp } from "../../../helpers/dateFilter";
 
 export function PageViewAssistido() {
   const { id } = useParams();
@@ -98,6 +98,11 @@ export function PageViewAssistido() {
   };
 
   window.addEventListener("scroll", verifyScrollSection);
+
+  function convertDateTimeStemp(seconds) {
+    const date = new Date(seconds * 1000);
+    return date;
+  }
 
   return (
     <C.Container>
@@ -194,18 +199,26 @@ export function PageViewAssistido() {
                   }}
                 >
                   <label>Data nascimento</label>
-                  <C.Input
-                    type={"date"}
-                    required
-                    value={
-                      assistidoView.length > 0 &&
-                     
-                        assistidoView[0].identificacao.dataNasc.seconds * 1000
-                     
-                    }
-                  />
+                  {assistidoView.length > 0 && (
+                    <C.Input
+                      type={"date"}
+                      required
+                      value={formatDateStemp(
+                        convertDateTimeStemp(
+                          assistidoView[0].identificacao.dataNasc.seconds
+                        )
+                      )}
+                    />
+                  )}
                 </C.InputColumn>
-
+                {assistidoView.length > 0 &&
+                  console.log(
+                    formatDate(
+                      convertDateTimeStemp(
+                        assistidoView[0].identificacao.dataNasc.seconds
+                      )
+                    )
+                  )}
                 <C.InputColumn
                   style={{
                     width: "300px",
