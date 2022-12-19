@@ -6,6 +6,11 @@ export const getCurrentMonth = () => {
   return `${now.getFullYear()}-${now.getMonth() + 1}`;
 };
 
+export function convertDateTimeStemp(seconds) {
+  const date = new Date(seconds * 1000);
+  return date;
+}
+
 export const filterListByMonth = (list, date) => {
   // Filtrando lista por mes e ano.
   let newList = [];
@@ -40,7 +45,7 @@ export const formatDateStemp = (date) => {
   let month = date.getMonth() + 1;
   let day = date.getDate();
 
-  return `${year}-${(month)}-${day}`;
+  return `${year}-${addZeroToDate(month)}-${addZeroToDate(day)}`;
 };
 
 export const formatCurrentMonth = (currentMonth) => {

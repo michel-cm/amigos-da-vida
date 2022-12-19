@@ -2,7 +2,7 @@ import * as C from "./styles";
 import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
 import { ModalMembroFamilia } from "../ModalMembroFamilia";
-import { TableViewComposicaoFamiliar } from "../PageViewAssistido/TableViewComposicaoFamiliar";
+import { TableViewComposicaoFamiliar } from "./TableViewComposicaoFamiliar";
 
 export function PageAddAssistido() {
   /* SCROLL \/ */
@@ -138,8 +138,6 @@ export function PageAddAssistido() {
     ],
     */
   ]);
-  console.log("composicaoFamiliar");
-  console.log(composicaoFamiliar[0]);
 
   const [acessoProgramasSociais, setAcessoProgramasSociais] = useState({
     acesso: false,
@@ -160,6 +158,13 @@ export function PageAddAssistido() {
   const [modalMembroFamiliaOpen, setModalMembroFamiliaOpen] = useState(false);
   function openModal() {
     setModalMembroFamiliaOpen(true);
+  }
+
+  function deleteMembroFamiliar(list, id) {
+    const newList = list.filter((membro, index) => {
+      return index != id;
+    });
+    return newList;
   }
 
   return (
@@ -852,9 +857,10 @@ export function PageAddAssistido() {
 
             {composicaoFamiliar.length > 0 && (
               <div>
-                
                 <TableViewComposicaoFamiliar
                   listComposicaoFamiliar={composicaoFamiliar}
+                  fn={deleteMembroFamiliar}
+                  setComposicaoFamiliar={setComposicaoFamiliar}
                 />
               </div>
             )}

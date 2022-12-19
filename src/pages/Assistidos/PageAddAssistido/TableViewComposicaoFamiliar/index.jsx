@@ -10,23 +10,19 @@ import {
 } from "../../../../helpers/dateFilter";
 import { useEffect, useState } from "react";
 
-export function TableViewComposicaoFamiliar({ listComposicaoFamiliar, fn }) {
+export function TableViewComposicaoFamiliar({
+  listComposicaoFamiliar,
+  fn,
+  setComposicaoFamiliar,
+}) {
   const navigate = useNavigate();
-
-  const [listMembros, setListMembros] = useState([]);
-
-  useEffect(() => {
-    listComposicaoFamiliar.length > 0
-      ? setListMembros(listComposicaoFamiliar)
-      : setListMembros([]);
-  }, [listComposicaoFamiliar, listMembros]);
 
   function handleViewAssistido(idAssistido) {
     navigate(`/assistidos/${idAssistido}`);
   }
 
   function handleDeleteMembroFamiliar(index) {
-    setListMembros(fn(listComposicaoFamiliar, index));
+    setComposicaoFamiliar(fn(listComposicaoFamiliar, index));
   }
 
   const parentesco = [
@@ -59,8 +55,7 @@ export function TableViewComposicaoFamiliar({ listComposicaoFamiliar, fn }) {
           </thead>
           <tbody>
             {listComposicaoFamiliar.length > 0 &&
-              listComposicaoFamiliar.map((membro, index) => {
-                console.log(membro.dataNasc.seconds);
+              listComposicaoFamiliar.map((membro, index) => {                
                 return (
                   <tr key={index}>
                     <td>{membro.nome}</td>
