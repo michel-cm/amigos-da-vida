@@ -2,6 +2,7 @@ import * as C from "./styles";
 import { useRef, useState } from "react";
 import { Button } from "../../../components/Button";
 import { ModalMembroFamilia } from "../ModalMembroFamilia";
+import { TableViewComposicaoFamiliar } from "../PageViewAssistido/TableViewComposicaoFamiliar";
 
 export function PageAddAssistido() {
   /* SCROLL \/ */
@@ -124,18 +125,21 @@ export function PageAddAssistido() {
 
   /* Códigos de Parentesco: 1-Cônjuge/ companheiro (a); 2-Filho (a); 3-Enteado (a); 4-Neto (a), Bisneto (a); 
   5-Pai/ Mãe; 6-Sogro (a); 7-Irmão/irmã; 8-Genro/Nora; 9-Outro parente; 10-Não parente.*/
-  const [composicaoFamiliar, setComposicaoFamiliar] = useState({
-    membros: 0,
+  const [composicaoFamiliar, setComposicaoFamiliar] = useState([
+    /*    
     integrantes: [
       {
-        nome: "",
-        dataNasc: "",
-        parentesco: 2,
-        ocupacao: "",
-        renda: 0,
+        nome: "Fulana da Silva Lopes Mendes Martins",
+        dataNasc: "2010-01-29",
+        parentesco: 1,
+        ocupacao: "Diarista de manha/tarde/noitedsadsa",
+        renda: 1800,
       },
     ],
-  });
+    */
+  ]);
+  console.log("composicaoFamiliar");
+  console.log(composicaoFamiliar[0]);
 
   const [acessoProgramasSociais, setAcessoProgramasSociais] = useState({
     acesso: false,
@@ -846,8 +850,21 @@ export function PageAddAssistido() {
 
             <Button title={"Adicionar membro"} fn={openModal} />
 
+            {composicaoFamiliar.length > 0 && (
+              <div>
+                
+                <TableViewComposicaoFamiliar
+                  listComposicaoFamiliar={composicaoFamiliar}
+                />
+              </div>
+            )}
+
             {modalMembroFamiliaOpen && (
-              <ModalMembroFamilia setModal={setModalMembroFamiliaOpen} />
+              <ModalMembroFamilia
+                setModal={setModalMembroFamiliaOpen}
+                setComposicaoFamiliar={setComposicaoFamiliar}
+                composicaoFamiliar={composicaoFamiliar}
+              />
             )}
           </C.ComposicaoCondicoes>
           <C.ProgramasSociais ref={programasSociaisRef}>

@@ -5,19 +5,34 @@ import { BsFillEyeFill } from "react-icons/bs";
 
 import { useState } from "react";
 
-export const ModalMembroFamilia = ({ setModal }) => {
+export const ModalMembroFamilia = ({
+  setModal,
+  setComposicaoFamiliar,
+  composicaoFamiliar,
+}) => {
   const handleCloseModal = () => {
-    setModal(!true);
+    setModal(false);
+  };
+
+  const handleSetComposicaoFamiliar = () => {
+    if (
+      identificacao.nome &&
+      identificacao.dataNasc &&
+      identificacao.ocupacao
+    ) {
+      setModal(false);
+      setComposicaoFamiliar((state) => [...state, identificacao]);
+    } else {
+      alert("Preencha todos os dados!");
+    }
   };
 
   const [identificacao, setIdentificao] = useState({
     nome: "",
-    nomeMae: "",
     dataNasc: "",
-    nascidoEm: "",
-    estadoCivil: "solteiro",
-    cpf: "",
-    rg: "",
+    parentesco: "",
+    ocupacao: "",
+    renda: "",
   });
 
   const parentesco = [
@@ -99,9 +114,16 @@ export const ModalMembroFamilia = ({ setModal }) => {
                 }}
               >
                 <label>Parentesco</label>
-                <C.Select>
+                <C.Select
+                  onChange={(e) =>
+                    setIdentificao({
+                      ...identificacao,
+                      parentesco: e.target.value,
+                    })
+                  }
+                >
                   {parentesco.map((item, index) => {
-                    return <option value={index}>{item}</option>;
+                    return <option key={index} value={index}>{item}</option>;
                   })}
                 </C.Select>
               </C.InputColumn>
@@ -122,11 +144,11 @@ export const ModalMembroFamilia = ({ setModal }) => {
                   type={"text"}
                   required
                   maxLength={11}
-                  value={identificacao.cpf}
+                  value={identificacao.ocupacao}
                   onChange={(e) =>
                     setIdentificao({
                       ...identificacao,
-                      cpf: e.target.value,
+                      ocupacao: e.target.value,
                     })
                   }
                 />
@@ -141,18 +163,20 @@ export const ModalMembroFamilia = ({ setModal }) => {
                 <C.Input
                   type={"numer"}
                   maxLength={12}
-                  value={identificacao.rg}
+                  value={identificacao.renda}
                   onChange={(e) =>
                     setIdentificao({
                       ...identificacao,
-                      rg: e.target.value,
+                      renda: e.target.value,
                     })
                   }
                 />
               </C.InputColumn>
             </C.AreaInputsDisplayFlex>
           </C.Form>
-          <C.ButtonConfirm onClick={""}>Adicionar</C.ButtonConfirm>
+          <C.ButtonConfirm onClick={handleSetComposicaoFamiliar}>
+            Adicionar
+          </C.ButtonConfirm>
           <C.ButtonNot onClick={handleCloseModal}>Cancelar</C.ButtonNot>
         </C.AreaIdentificacao>
       </C.Modal>

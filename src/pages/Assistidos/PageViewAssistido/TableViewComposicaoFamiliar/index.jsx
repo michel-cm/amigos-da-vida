@@ -41,13 +41,13 @@ export function TableViewComposicaoFamiliar({ listComposicaoFamiliar }) {
           </thead>
           <tbody>
             {listComposicaoFamiliar &&
-              listComposicaoFamiliar.integrantes.map((membro, index) => {
+              listComposicaoFamiliar.map((membro, index) => {
                 return (
                   <tr key={index}>
                     <td>{membro.nome}</td>
                     <td>{membro.dataNasc}</td>
                     <td>
-                      <C.Select value={membro.parentesco - 1} disabled>
+                      <C.Select value={membro.parentesco } disabled>
                         {parentesco.map((item, index) => {
                           return <option value={index}>{item}</option>;
                         })}
