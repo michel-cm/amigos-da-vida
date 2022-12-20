@@ -13,28 +13,25 @@ export const Container = styled.div`
   transition: all 0.4s;
   z-index: 10;
 
-  h2 {
-    margin-bottom: 2rem;
+  p {
+    margin-bottom: 32px;
   }
 `;
 
 export const Modal = styled.div`
   background-color: ${(props) => props.theme["gray-800"]};
-  padding: 16px 32px;
+  padding: 24px 32px;
   border-radius: 10px;
-  width: 50vw;
-  height: 90vh;
 `;
 
 export const ButtonConfirm = styled.button`
   border: none;
-  padding: 16px 32px;
+  padding: 16px;
   border-radius: 10%;
   background-color: #5a9bfc;
   border: 1px solid #5a9bfc;
 
-  color: ${(props) => props.theme["gray-100"]};
-
+  width: 80px;
   font-size: 15px;
   cursor: pointer;
   transition: filter 0.2s;
@@ -47,9 +44,10 @@ export const ButtonConfirm = styled.button`
 `;
 export const ButtonNot = styled.button`
   border: 1px solid #5a9bfc;
-  padding: 16px 32px;
+  padding: 16px;
   border-radius: 10%;
 
+  width: 80px;
   font-size: 15px;
   cursor: pointer;
   transition: filter 0.2s;
@@ -70,38 +68,6 @@ export const AreaClose = styled.div`
 
     &:hover {
       opacity: 0.7;
-    }
-  }
-`;
-
-export const AreaIdentificacao = styled.div`
-  height: 80vh;
-  border-radius: 5px;
-  background: ${(props) => props.theme["gray-800"]};
-  padding: 2rem;
-`;
-
-export const AreaInputsDisplayFlex = styled.div`
-  display: flex;
-`;
-
-export const InputColumn = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
-  margin-bottom: 1.5rem;
-`;
-
-export const Input = styled.input`
-  background: ${(props) => props.theme["gray-900"]};
-  border: none;
-  padding: 0.75rem 1rem;
-  color: ${(props) => props.theme["gray-300"]};
-  font-size: 0.9rem;
-
-  &[type="date"] {
-    ::-webkit-calendar-picker-indicator {
-      filter: invert(1);
     }
   }
 `;

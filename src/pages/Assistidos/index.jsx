@@ -1,5 +1,6 @@
 import * as C from "./styles";
 
+
 import { Card } from "../../components/Card";
 import { TableListAssistidos } from "./TableListAssistidos";
 

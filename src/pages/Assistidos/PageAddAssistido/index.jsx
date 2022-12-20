@@ -140,19 +140,18 @@ export function PageAddAssistido() {
   ]);
 
   const [acessoProgramasSociais, setAcessoProgramasSociais] = useState({
-    acesso: false,
-    programas: [
-      {
-        bolsaFamilia: false,
-        valor: 0,
-      },
-      {
-        prestacaoContinuadaBPC: false,
-        valor: 0,
-      },
-      { outros: false, descricao: "", valor: 0 },
-    ],
+    acesso: true,
     valorTotal: 0,
+
+    bolsaFamilia: true,
+    valorBolsaFamilia: 0,
+
+    prestacaoContinuadaBPC: false,
+    valorBPC: 0,
+
+    outros: false,
+    descricao: "",
+    valorOutros: 0,
   });
 
   const [modalMembroFamiliaOpen, setModalMembroFamiliaOpen] = useState(false);
@@ -165,6 +164,10 @@ export function PageAddAssistido() {
       return index != id;
     });
     return newList;
+  }
+
+  {
+    console.log(acessoProgramasSociais);
   }
 
   return (
@@ -902,65 +905,100 @@ export function PageAddAssistido() {
                 <div>
                   <input
                     type="checkbox"
-                    name="bolsaFamilia"
-                    checked={acessoProgramasSociais.programas[0].bolsaFamilia}
+                    checked={acessoProgramasSociais.bolsaFamilia}
+                    onChange={(e) =>
+                      setAcessoProgramasSociais({
+                        ...acessoProgramasSociais,
+                        bolsaFamilia: !acessoProgramasSociais.bolsaFamilia,
+                      })
+                    }
                   />
                   <label htmlFor="bolsaFamilia">
                     {" "}
                     Benefício do Programa Bolsa Família.
                   </label>
-                  <input
-                    type="number"
-                    value={acessoProgramasSociais.programas[0].valor}
-                    style={{
-                      width: "60px",
-                      padding: "1px",
-                      background: "#000",
-                    }}
-                  />
+                  {acessoProgramasSociais.bolsaFamilia && (
+                    <input
+                      type="number"
+                      value={acessoProgramasSociais.valorBolsaFamilia}
+                      style={{
+                        width: "60px",
+                        padding: "1px",
+                        background: "#000",
+                      }}
+                      onChange={(e) =>
+                        setAcessoProgramasSociais({
+                          ...acessoProgramasSociais,
+                          valorBolsaFamilia: e.target.value,
+                        })
+                      }
+                    />
+                  )}
                 </div>
                 <div>
                   <input
                     type="checkbox"
-                    name="bolsaFamilia"
-                    checked={
-                      acessoProgramasSociais.programas[1].prestacaoContinuadaBPC
+                    checked={acessoProgramasSociais.prestacaoContinuadaBPC}
+                    onChange={(e) =>
+                      setAcessoProgramasSociais({
+                        ...acessoProgramasSociais,
+                        prestacaoContinuadaBPC:
+                          !acessoProgramasSociais.prestacaoContinuadaBPC,
+                      })
                     }
                   />
-                  <label htmlFor="bolsaFamilia">
-                    {" "}
-                    Benefício de Prestação Continuada-BPC.
-                  </label>
-                  <input
-                    type="number"
-                    value={acessoProgramasSociais.programas[1].valor}
-                    style={{
-                      width: "60px",
-                      padding: "1px",
-                      background: "#000",
-                    }}
-                  />
+                  <label> Benefício de Prestação Continuada-BPC.</label>
+                  {acessoProgramasSociais.prestacaoContinuadaBPC && (
+                    <input
+                      type="number"
+                      value={acessoProgramasSociais.valorBPC}
+                      style={{
+                        width: "60px",
+                        padding: "1px",
+                        background: "#000",
+                      }}
+                      onChange={(e) =>
+                        setAcessoProgramasSociais({
+                          ...acessoProgramasSociais,
+                          valorBPC: e.target.value,
+                        })
+                      }
+                    />
+                  )}
                 </div>
                 <div>
                   <input
                     type="checkbox"
-                    name="bolsaFamilia"
-                    checked={acessoProgramasSociais.programas[2].outros}
+                    checked={acessoProgramasSociais.outros}
+                    onChange={(e) =>
+                      setAcessoProgramasSociais({
+                        ...acessoProgramasSociais,
+                        outros: !acessoProgramasSociais.outros,
+                      })
+                    }
                   />
-                  <label htmlFor="bolsaFamilia"> Outros. Qual?</label>
-                  <input
-                    type="number"
-                    value={acessoProgramasSociais.programas[2].valor}
-                    style={{
-                      width: "60px",
-                      padding: "1px",
-                      background: "#000",
-                    }}
-                  />
+                  <label> Outros. Qual?</label>
+                  {acessoProgramasSociais.outros && (
+                    <input
+                      type="number"
+                      value={acessoProgramasSociais.valorOutros}
+                      style={{
+                        width: "60px",
+                        padding: "1px",
+                        background: "#000",
+                      }}
+                      onChange={(e) =>
+                        setAcessoProgramasSociais({
+                          ...acessoProgramasSociais,
+                          valorOutros: e.target.value,
+                        })
+                      }
+                    />
+                  )}
                 </div>
-                {acessoProgramasSociais.programas[2].outros ? (
+                {acessoProgramasSociais.outros ? (
                   <textarea
-                    value={acessoProgramasSociais.programas[2].descricao}
+                    value={acessoProgramasSociais.descricao}
                     cols="40"
                     rows="3"
                     style={{
@@ -968,13 +1006,16 @@ export function PageAddAssistido() {
                       background: "#000",
                       color: "#F8F8F8",
                     }}
+                    onChange={(e) =>
+                      setAcessoProgramasSociais({
+                        ...acessoProgramasSociais,
+                        descricao: e.target.value,
+                      })
+                    }
                   ></textarea>
                 ) : (
                   <div></div>
                 )}
-                <div style={{ marginTop: "8px" }}>
-                  <p>Valor Total: {acessoProgramasSociais.valorTotal}</p>
-                </div>
               </>
             ) : (
               <div></div>

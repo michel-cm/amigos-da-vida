@@ -99,6 +99,11 @@ export const ProgramasSociais = styled.div`
   border-radius: 5px;
   background: ${(props) => props.theme["gray-800"]};
   padding: 2rem;
+
+  input {
+    color: #f8f8f8;
+    font-size: 0.9rem;
+  }
 `;
 
 export const AreaInputsDisplayFlex = styled.div`
