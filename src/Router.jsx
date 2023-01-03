@@ -6,9 +6,9 @@ import { Home } from "./pages/Home";
 import { Inventario } from "./pages/Inventario";
 import { Profissionais } from "./pages/Profissionais";
 import { Documentos } from "./pages/Documentos";
-import { PageViewAssistido } from "./pages/Assistidos/PageViewAssistido";
 
 import { PageAddAssistido } from "./pages/Assistidos/PageAddAssistido";
+
 import { PageViewItem } from "./pages/Inventario/PageViewItem";
 
 export function Router() {
