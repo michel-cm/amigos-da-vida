@@ -7,6 +7,7 @@ import { Inventario } from "./pages/Inventario";
 import { Profissionais } from "./pages/Profissionais";
 import { Documentos } from "./pages/Documentos";
 import { PageViewAssistido } from "./pages/Assistidos/PageViewAssistido";
+
 import { PageAddAssistido } from "./pages/Assistidos/PageAddAssistido";
 import { PageViewItem } from "./pages/Inventario/PageViewItem";
 
@@ -18,7 +19,7 @@ export function Router() {
 
         <Route path="/assistidos" element={<Assistidos />} />
         <Route path="/assistidos/adicionar" element={<PageAddAssistido />} />
-        <Route path="/assistidos/:id" element={<PageViewAssistido />} />
+        <Route path="/assistidos/:id" element={<PageAddAssistido />} />
 
         <Route path="/inventario" element={<Inventario />} />
         <Route path="/inventario/:id" element={<PageViewItem />} />

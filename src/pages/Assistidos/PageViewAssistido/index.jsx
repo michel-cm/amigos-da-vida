@@ -749,8 +749,8 @@ export function PageViewAssistido() {
                     type="checkbox"
                     name="bolsaFamilia"
                     checked={
-                      assistidoView[0].acessoProgramasSociais.programas[0]
-                        .bolsaFamilia
+                      assistidoView[0].acessoProgramasSociais
+                        .bolsaFamilia 
                     }
                   />
                   <label htmlFor="bolsaFamilia">
@@ -760,7 +760,7 @@ export function PageViewAssistido() {
                   <input
                     type="number"
                     value={
-                      assistidoView[0].acessoProgramasSociais.programas[0].valor
+                      assistidoView[0].acessoProgramasSociais.valorBolsaFamilia
                     }
                     style={{
                       width: "60px",
@@ -774,7 +774,7 @@ export function PageViewAssistido() {
                     type="checkbox"
                     name="bolsaFamilia"
                     checked={
-                      assistidoView[0].acessoProgramasSociais.programas[1]
+                      assistidoView[0].acessoProgramasSociais
                         .prestacaoContinuadaBPC
                     }
                   />
@@ -785,7 +785,7 @@ export function PageViewAssistido() {
                   <input
                     type="number"
                     value={
-                      assistidoView[0].acessoProgramasSociais.programas[1].valor
+                      assistidoView[0].acessoProgramasSociais.valorBPC
                     }
                     style={{
                       width: "60px",
@@ -799,7 +799,7 @@ export function PageViewAssistido() {
                     type="checkbox"
                     name="bolsaFamilia"
                     checked={
-                      assistidoView[0].acessoProgramasSociais.programas[2]
+                      assistidoView[0].acessoProgramasSociais
                         .outros
                     }
                   />
@@ -807,7 +807,7 @@ export function PageViewAssistido() {
                   <input
                     type="number"
                     value={
-                      assistidoView[0].acessoProgramasSociais.programas[2].valor
+                      assistidoView[0].acessoProgramasSociais.valorOutros
                     }
                     style={{
                       width: "60px",
@@ -816,10 +816,10 @@ export function PageViewAssistido() {
                     }}
                   />
                 </div>
-                {assistidoView[0].acessoProgramasSociais.programas[2].outros ? (
+                {assistidoView[0].acessoProgramasSociais.outros ? (
                   <textarea
                     value={
-                      assistidoView[0].acessoProgramasSociais.programas[2]
+                      assistidoView[0].acessoProgramasSociais
                         .descricao
                     }
                     cols="40"

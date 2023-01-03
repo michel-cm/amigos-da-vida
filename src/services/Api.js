@@ -13,8 +13,6 @@ export const Api = {
   getAllAssistidos: async () => {
     const list = [];
 
-    console.log('API GETALLASSISTIDOS')
-
     let results = await getDocs(collection(database, "assistidos"));
     results.forEach((result) => {
       let data = result.data();
@@ -63,17 +61,14 @@ export const Api = {
     );
   },
 
-  /*
-  updateAssistido: async (question, id) => {
-    const questionRef = doc(database, "questions", id);
-    await updateDoc(questionRef, {
-      title: question.title,
-      a: question.a,
-      b: question.b,
-      c: question.c,
-      d: question.d,
-      active: question.active,
+  updateAssistido: async (id, assistido) => {
+    const exameRef = doc(database, "assistidos", id);
+    await updateDoc(exameRef, {
+      ...assistido,
     });
   },
-  */
+
+  deleteAssistido: async (idAssistido) => {
+    await deleteDoc(doc(database, "assistidos", idAssistido));
+  },
 };

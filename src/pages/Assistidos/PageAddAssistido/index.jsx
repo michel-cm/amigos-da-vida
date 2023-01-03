@@ -4,7 +4,22 @@ import { Button } from "../../../components/Button";
 import { ModalMembroFamilia } from "../ModalMembroFamilia";
 import { TableViewComposicaoFamiliar } from "./TableViewComposicaoFamiliar";
 
+import { useAssistidosContext } from "../../../hooks/useAssistidosContext";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect } from "react";
+
+import { AlertCard } from "../../../components/AlertCard";
+
+
 export function PageAddAssistido() {
+  //params?
+  const { id } = useParams();
+
+  const { getAssistidoForId } = useAssistidosContext();
+
+  const [modalAttSucess, setModallAttSucess] = useState(false);
+
+
   /* SCROLL \/ */
   const identificacaoRef = useRef(0);
   const enderecoRef = useRef(0);
@@ -82,6 +97,42 @@ export function PageAddAssistido() {
   window.addEventListener("scroll", verifyScrollSection);
   /* SCROLL /\ */
 
+  const { addNewAssistido, getAllAssistidos,updateAssist } = useAssistidosContext();
+
+  const navigate = useNavigate();
+
+  const handleAddAssistido = async () => {
+    await addNewAssistido({
+      identificacao,
+      endereco,
+      condicoesSaude,
+      condicoesHabitacionais,
+      composicaoFamiliar,
+      acessoProgramasSociais,
+    }).then(
+      async () =>
+        await getAllAssistidos().then(() => {
+          navigate("/assistidos");
+        })
+    );
+  };
+
+  const handleUpdateAssistido = async () => {
+    await updateAssist(id, {
+      identificacao,
+      endereco,
+      condicoesSaude,
+      condicoesHabitacionais,
+      composicaoFamiliar,
+      acessoProgramasSociais,
+    }).then(
+      async () => setModallAttSucess(true),
+      await getAllAssistidos().then(() => {
+        setTimeout(() => setModallAttSucess(false), 2500);
+      })
+    );
+  };
+
   const [identificacao, setIdentificao] = useState({
     nome: "",
     nomeMae: "",
@@ -140,10 +191,10 @@ export function PageAddAssistido() {
   ]);
 
   const [acessoProgramasSociais, setAcessoProgramasSociais] = useState({
-    acesso: true,
+    acesso: false,
     valorTotal: 0,
 
-    bolsaFamilia: true,
+    bolsaFamilia: false,
     valorBolsaFamilia: 0,
 
     prestacaoContinuadaBPC: false,
@@ -166,12 +217,26 @@ export function PageAddAssistido() {
     return newList;
   }
 
-  {
-    console.log(acessoProgramasSociais);
-  }
+  useEffect(() => {
+    if (id) {
+      setIdentificao(getAssistidoForId(id)[0].identificacao);
+      setEndereco(getAssistidoForId(id)[0].endereco);
+      setCondicoesSaude(getAssistidoForId(id)[0].condicoesSaude);
+      setCondicoesHabitacionais(
+        getAssistidoForId(id)[0].condicoesHabitacionais
+      );
+      setComposicaoFamiliar(getAssistidoForId(id)[0].composicaoFamiliar);
+      setAcessoProgramasSociais(
+        getAssistidoForId(id)[0].acessoProgramasSociais
+      );
+    }
+  }, [id, getAssistidoForId]);
 
   return (
     <C.Container>
+       {modalAttSucess && (
+        <AlertCard title="Atualizado com sucesso" type="green" />
+      )}
       <C.AreaContent>
         <C.Aside>
           <C.ContentInformations>
@@ -213,7 +278,10 @@ export function PageAddAssistido() {
             </a>
           </C.ContentInformations>
           <C.AreaButtonMenu>
-            <Button title={"Adicionar assistido"} />
+            <Button
+              fn={id ? handleUpdateAssistido : handleAddAssistido}
+              title={id ? "Atualizar" : "Adicionar assistido"}
+            />
           </C.AreaButtonMenu>
           <C.AreaButtonMenu>
             <Button title={"Cancelar"} type={"cancel"} />
@@ -891,7 +959,7 @@ export function PageAddAssistido() {
                 onChange={(e) =>
                   setAcessoProgramasSociais({
                     ...acessoProgramasSociais,
-                    acesso: e.target.value,
+                    acesso: !acessoProgramasSociais.acesso,
                   })
                 }
               >

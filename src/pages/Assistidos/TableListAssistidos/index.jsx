@@ -9,9 +9,13 @@ import { Search } from "../../../components/Search";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "../../../components/Button";
+import { useAssistidosContext } from "../../../hooks/useAssistidosContext";
 
 export function TableListAssistidos({ listAssistidos }) {
   const navigate = useNavigate();
+
+  const { deleteAssistido, getAllAssistidos } = useAssistidosContext();
+
   const [search, setSearch] = useState("");
 
   function handleViewAssistido(idAssistido) {
@@ -22,7 +26,12 @@ export function TableListAssistidos({ listAssistidos }) {
     navigate(`/assistidos/adicionar`);
   }
 
-  function handleDeleteAssistido(id) {}
+  async function handleDeleteAssistido(id) {
+    window.confirm("Confirmar exclusão ?") &&
+      deleteAssistido(id).then(async () => {
+        await getAllAssistidos();
+      });
+  }
 
   return (
     <C.Container>
@@ -76,7 +85,7 @@ export function TableListAssistidos({ listAssistidos }) {
                           />
                         </C.AreaIcon>
                         <C.AreaIcon
-                          onClick={() => handleDeleteAssistido(index)}
+                          onClick={() => handleDeleteAssistido(assistido.id)}
                         >
                           <BsFillTrashFill
                             style={{
