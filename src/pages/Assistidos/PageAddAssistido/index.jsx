@@ -230,7 +230,9 @@ export function PageAddAssistido() {
         getAssistidoForId(id)[0].acessoProgramasSociais
       );
     }
-  }, [id, getAssistidoForId]);
+  }, [id]);
+
+  console.log("aaaaa")
 
   return (
     <C.Container>
