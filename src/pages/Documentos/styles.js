@@ -32,12 +32,30 @@ export const AreaButtons = styled.div`
     flex-direction: column;
     align-items: center;
 
-    input {
-      font-size: 0.85rem;
-    }
-
     progress {
       margin-top: 0.5rem;
+    }
+  }
+`;
+
+export const AreaInputFile = styled.div`
+  input {
+    display: none;
+  }
+  label {
+    padding: 1rem;
+
+    background-color: #444;
+    color: #fff;
+    text-transform: uppercase;
+    text-align: center;
+    display: block;
+    margin-top: 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+
+    &:hover {
+      opacity: 0.9;
     }
   }
 `;
@@ -76,9 +94,5 @@ export const ButtonCancelarStorage = styled.button`
 export const AreaButtonsStorage = styled.div`
   display: flex;
   gap: 1rem;
-  position: fixed;
-  bottom: 1rem;
-  right: 1rem;
 
-  z-index: 99;
 `;
