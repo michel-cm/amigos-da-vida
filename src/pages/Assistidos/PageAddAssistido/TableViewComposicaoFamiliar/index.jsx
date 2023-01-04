@@ -3,24 +3,14 @@ import * as C from "./styles";
 import { BsFillTrashFill } from "react-icons/bs";
 import { BsFillEyeFill } from "react-icons/bs";
 
-import { useNavigate } from "react-router-dom";
-import {
-  convertDateTimeStemp,
-  formatDateStemp,
-} from "../../../../helpers/dateFilter";
-import { useEffect, useState } from "react";
+import { formateValue } from "../../../../helpers/formateValue";
 
 export function TableViewComposicaoFamiliar({
   listComposicaoFamiliar,
-  fn,
   setComposicaoFamiliar,
+  fn,
+  handleViewMembroFamilia,
 }) {
-  const navigate = useNavigate();
-
-  function handleViewAssistido(idAssistido) {
-    navigate(`/assistidos/${idAssistido}`);
-  }
-
   function handleDeleteMembroFamiliar(index) {
     setComposicaoFamiliar(fn(listComposicaoFamiliar, index));
   }
@@ -55,21 +45,27 @@ export function TableViewComposicaoFamiliar({
           </thead>
           <tbody>
             {listComposicaoFamiliar.length > 0 &&
-              listComposicaoFamiliar.map((membro, index) => {                
+              listComposicaoFamiliar.map((membro, index) => {
                 return (
                   <tr key={index}>
                     <td>{membro.nome}</td>
                     <td>{membro.ocupacao}</td>
-                    <td>{membro.renda}</td>
+                    <td>{formateValue(parseInt(membro.renda))}</td>
                     <td>
-                      <C.Select value={membro.parentesco}>
+                      <C.Select value={membro.parentesco} readOnly>
                         {parentesco.map((item, index) => {
-                          return <option value={index}>{item}</option>;
+                          return (
+                            <option key={index} value={index}>
+                              {item}
+                            </option>
+                          );
                         })}
                       </C.Select>
                     </td>
                     <td>
-                      <C.AreaIcon onClick={() => handleViewAssistido(index)}>
+                      <C.AreaIcon
+                        onClick={() => handleViewMembroFamilia(index)}
+                      >
                         <BsFillEyeFill
                           style={{
                             fontSize: "16px",

@@ -3,12 +3,13 @@ import { BsFillXCircleFill } from "react-icons/bs";
 import { BsFillTrashFill } from "react-icons/bs";
 import { BsFillEyeFill } from "react-icons/bs";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const ModalMembroFamilia = ({
   setModal,
   setComposicaoFamiliar,
   composicaoFamiliar,
+  indexExist,
 }) => {
   const handleCloseModal = () => {
     setModal(false);
@@ -27,13 +28,31 @@ export const ModalMembroFamilia = ({
     }
   };
 
+  const handleUpdateMembro = () => {
+    if (
+      identificacao.nome &&
+      identificacao.dataNasc &&
+      identificacao.ocupacao
+    ) {
+      const removeFilteredId = composicaoFamiliar.splice(indexExist, 1);
+      setComposicaoFamiliar([...composicaoFamiliar, identificacao]);
+      setModal(false);
+    }
+  };
+
   const [identificacao, setIdentificao] = useState({
     nome: "",
     dataNasc: "",
     parentesco: "",
     ocupacao: "",
-    renda: "",
+    renda: 0,
   });
+ 
+  useEffect(() => {
+    if (indexExist !== null) {
+      setIdentificao(composicaoFamiliar[indexExist]);
+    }
+  }, [indexExist, composicaoFamiliar]);
 
   const parentesco = [
     "Cônjuge/companheiro ",
@@ -91,7 +110,6 @@ export const ModalMembroFamilia = ({
                 <label>Data nascimento</label>
                 <C.Input
                   type={"date"}
-                  required
                   value={identificacao.dataNasc}
                   onChange={(e) =>
                     setIdentificao({
@@ -115,6 +133,7 @@ export const ModalMembroFamilia = ({
               >
                 <label>Parentesco</label>
                 <C.Select
+                  value={identificacao.parentesco}
                   onChange={(e) =>
                     setIdentificao({
                       ...identificacao,
@@ -123,7 +142,11 @@ export const ModalMembroFamilia = ({
                   }
                 >
                   {parentesco.map((item, index) => {
-                    return <option key={index} value={index}>{item}</option>;
+                    return (
+                      <option key={index} value={index}>
+                        {item}
+                      </option>
+                    );
                   })}
                 </C.Select>
               </C.InputColumn>
@@ -161,7 +184,7 @@ export const ModalMembroFamilia = ({
               >
                 <label>Renda</label>
                 <C.Input
-                  type={"numer"}
+                  type={"number"}
                   maxLength={12}
                   value={identificacao.renda}
                   onChange={(e) =>
@@ -174,8 +197,14 @@ export const ModalMembroFamilia = ({
               </C.InputColumn>
             </C.AreaInputsDisplayFlex>
           </C.Form>
-          <C.ButtonConfirm onClick={handleSetComposicaoFamiliar}>
-            Adicionar
+          <C.ButtonConfirm
+            onClick={
+              indexExist !== null
+                ? handleUpdateMembro
+                : handleSetComposicaoFamiliar
+            }
+          >
+            {indexExist !== null ? "Atualizar" : "Adicionar"}
           </C.ButtonConfirm>
           <C.ButtonNot onClick={handleCloseModal}>Cancelar</C.ButtonNot>
         </C.AreaIdentificacao>

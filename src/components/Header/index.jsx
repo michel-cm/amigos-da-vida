@@ -15,12 +15,9 @@ export function Header() {
         <NavLink to="inventario" title="inventário">
           Inventário
         </NavLink>
-        <NavLink to="profissionais" title="profissionais">
-          Profissionais
-        </NavLink>
         <NavLink to="documentos" title="documentos">
           Documentos
-        </NavLink>       
+        </NavLink>
       </nav>
     </C.Container>
   );

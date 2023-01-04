@@ -72,7 +72,7 @@ export const Select = styled.select`
   padding: 0.75rem 1rem;
   color: ${(props) => props.theme["gray-300"]};
   font-size: 0.9rem;
-  width: 6rem;
+  width: 8rem;
 `;
 
 export const AreaIcon = styled.div`

@@ -10,7 +10,6 @@ import { useEffect } from "react";
 
 import { AlertCard } from "../../../components/AlertCard";
 
-
 export function PageAddAssistido() {
   //params?
   const { id } = useParams();
@@ -18,7 +17,6 @@ export function PageAddAssistido() {
   const { getAssistidoForId } = useAssistidosContext();
 
   const [modalAttSucess, setModallAttSucess] = useState(false);
-
 
   /* SCROLL \/ */
   const identificacaoRef = useRef(0);
@@ -97,7 +95,8 @@ export function PageAddAssistido() {
   window.addEventListener("scroll", verifyScrollSection);
   /* SCROLL /\ */
 
-  const { addNewAssistido, getAllAssistidos,updateAssist } = useAssistidosContext();
+  const { addNewAssistido, getAllAssistidos, updateAssist } =
+    useAssistidosContext();
 
   const navigate = useNavigate();
 
@@ -207,6 +206,13 @@ export function PageAddAssistido() {
 
   const [modalMembroFamiliaOpen, setModalMembroFamiliaOpen] = useState(false);
   function openModal() {
+    setIndexForMembroFamiliar(null);
+    setModalMembroFamiliaOpen(true);
+  }
+
+  const [indexForMembroFamiliar, setIndexForMembroFamiliar] = useState(null);
+  function handleViewMembroFamilia(idIndex) {
+    setIndexForMembroFamiliar(idIndex);
     setModalMembroFamiliaOpen(true);
   }
 
@@ -232,11 +238,13 @@ export function PageAddAssistido() {
     }
   }, [id]);
 
-  console.log("aaaaa")
+  function handleCancel() {
+    navigate("/assistidos");
+  }
 
   return (
     <C.Container>
-       {modalAttSucess && (
+      {modalAttSucess && (
         <AlertCard title="Atualizado com sucesso" type="green" />
       )}
       <C.AreaContent>
@@ -286,7 +294,7 @@ export function PageAddAssistido() {
             />
           </C.AreaButtonMenu>
           <C.AreaButtonMenu>
-            <Button title={"Cancelar"} type={"cancel"} />
+            <Button title={"Voltar"} type={"cancel"} fn={handleCancel} />
           </C.AreaButtonMenu>
         </C.Aside>
         <C.Contentregistration>
@@ -934,6 +942,7 @@ export function PageAddAssistido() {
                   listComposicaoFamiliar={composicaoFamiliar}
                   fn={deleteMembroFamiliar}
                   setComposicaoFamiliar={setComposicaoFamiliar}
+                  handleViewMembroFamilia={handleViewMembroFamilia}
                 />
               </div>
             )}
@@ -943,6 +952,7 @@ export function PageAddAssistido() {
                 setModal={setModalMembroFamiliaOpen}
                 setComposicaoFamiliar={setComposicaoFamiliar}
                 composicaoFamiliar={composicaoFamiliar}
+                indexExist={indexForMembroFamiliar}
               />
             )}
           </C.ComposicaoCondicoes>
@@ -958,6 +968,7 @@ export function PageAddAssistido() {
                 style={{
                   width: "10rem",
                 }}
+                value={acessoProgramasSociais.acesso}
                 onChange={(e) =>
                   setAcessoProgramasSociais({
                     ...acessoProgramasSociais,
@@ -990,7 +1001,7 @@ export function PageAddAssistido() {
                   {acessoProgramasSociais.bolsaFamilia && (
                     <input
                       type="number"
-                      value={acessoProgramasSociais.valorBolsaFamilia}
+                      value={acessoProgramasSociais.bolsaFamilia}
                       style={{
                         width: "60px",
                         padding: "1px",

@@ -4,11 +4,9 @@ import { DefaultLayout } from "./layouts/DefaultLayout";
 import { Assistidos } from "./pages/Assistidos";
 import { Home } from "./pages/Home";
 import { Inventario } from "./pages/Inventario";
-import { Profissionais } from "./pages/Profissionais";
 import { Documentos } from "./pages/Documentos";
 
 import { PageAddAssistido } from "./pages/Assistidos/PageAddAssistido";
-
 import { PageViewItem } from "./pages/Inventario/PageViewItem";
 
 export function Router() {
@@ -23,8 +21,6 @@ export function Router() {
 
         <Route path="/inventario" element={<Inventario />} />
         <Route path="/inventario/:id" element={<PageViewItem />} />
-
-        <Route path="/profissionais" element={<Profissionais />} />
 
         <Route path="/documentos" element={<Documentos />} />
       </Route>
