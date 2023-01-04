@@ -51,12 +51,12 @@ export const AssistidosList = styled.div`
       line-height: 1.6;
 
       &:first-child {
-        width: 20%;
+        width: 40%;
         padding-left: 1rem;
       }
 
       &:last-child {
-        width: 8%;
+        width: 15%;
         padding-right: 1rem;
       }
     }

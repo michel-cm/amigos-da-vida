@@ -71,4 +71,20 @@ export const Api = {
   deleteAssistido: async (idAssistido) => {
     await deleteDoc(doc(database, "assistidos", idAssistido));
   },
+
+  //Storage
+  getAllCategoriasStorage: async () => {
+    const list = [];
+
+    let results = await getDocs(collection(database, "categoriasStorage"));
+    results.forEach((result) => {
+      let data = result.data();
+
+      list.push({
+        id: result.id,
+        categoria: data.categoria,
+      });
+    });
+    return list;
+  },
 };
