@@ -54,84 +54,14 @@ export const CardButton = styled.div`
   }
 `;
 
-export const ContainerSearch = styled.div`
-  display: flex;
-
-  &:first-child {
-    width: 75%;
-  }
-`;
-
-export const AreaListAssistidos = styled.div`
-  flex: 1;
-  padding: 2rem 3rem;
-
+export const AreaInventario = styled.div`
+  padding: 2rem 8rem;
   display: flex;
   flex-direction: column;
 
   h1 {
     font-size: 1.5rem;
     color: ${(props) => props.theme["gray-100"]};
-  }
-`;
-export const AreaInventario = styled.div`  
-  padding: 2rem 3rem;
-
-  display: flex;
-  flex-direction: column;
-
-  h1 {
-    font-size: 1.5rem;
-    color: ${(props) => props.theme["gray-100"]};
-  }
-`;
-
-export const AssistidosList = styled.div`
-  flex: 1;
-  overflow: auto;
-  margin-top: 1rem;
-
-  table {
-    width: 100%;
-    border-collapse: collapse;
-    min-width: 600px;
-
-    th {
-      background-color: ${(props) => props.theme["gray-600"]};
-      padding: 1rem;
-      text-align: left;
-      color: ${(props) => props.theme["gray-100"]};
-      font-size: 0.875rem;
-      line-height: 1.6;
-
-      &:first-child {
-        border-top-left-radius: 8px;
-        padding-left: 1rem;
-      }
-
-      &:last-child {
-        border-top-right-radius: 8px;
-        padding-right: 1rem;
-      }
-    }
-
-    td {
-      background-color: ${(props) => props.theme["gray-700"]};
-      border-top: 4px solid ${(props) => props.theme["gray-800"]};
-      padding: 1rem;
-      font-size: 0.875rem;
-      line-height: 1.6;
-
-      &:first-child {
-        width: 40%;
-        padding-left: 1rem;
-      }
-
-      &:last-child {
-        width: 10%;
-        padding-right: 1rem;
-      }
-    }
   }
 `;
 
@@ -141,7 +71,7 @@ export const InventarioList = styled.div`
   margin-top: 1rem;
 
   table {
-    width: 50%;
+    width: 100%;
     border-collapse: collapse;
     min-width: 400px;
 
@@ -198,7 +128,7 @@ const STATUS_COLORS = {
   yellow: "yellow-500",
   green: "green-500",
   red: "red-500",
-} 
+};
 
 export const Status = styled.span`
   display: flex;

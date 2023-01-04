@@ -43,359 +43,149 @@ export function Home() {
         </C.ContentAreaCardsButtons>
       </C.ContainerAreaCardsButtons>
 
-      <C.ContainerSearch>
-        <C.AreaListAssistidos>
-          <h1>Assistidos</h1>
+      <C.AreaInventario>
+        <h1>Inventário</h1>
 
-          <C.AssistidosList>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Início</th>
-                  <th>Tel</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Fulano da Silva Martins Costa </td>
-                  <td>13/11/2022</td>
-                  <td>35-997065079</td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </C.AssistidosList>
-        </C.AreaListAssistidos>
-        <C.AreaInventario>
-          <h1>Inventário</h1>
-
-          <C.InventarioList>
-            <table>
-              <thead>
-                <tr>
-                  <th>Nome</th>
-                  <th>Disponível</th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>Cadeira de rodas</td>
-                  <td>
-                    {" "}
-                    <C.Status statusColor="green"></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cadeira de rodas</td>
-                  <td>
-                    {" "}
-                    <C.Status statusColor="green"></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cadeira de rodas</td>
-                  <td>
-                    {" "}
-                    <C.Status statusColor="red"></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cadeira de rodas</td>
-                  <td>
-                    {" "}
-                    <C.Status statusColor="red"></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cadeira de rodas</td>
-                  <td>
-                    {" "}
-                    <C.Status statusColor="green"></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Cadeira de rodas</td>
-                  <td>
-                    {" "}
-                    <C.Status statusColor="red"></C.Status>
-                  </td>
-                  <td>
-                    {" "}
-                    <C.AreaIcon
-                      onClick={() => handleViewCandidate(candidate.email)}
-                    >
-                      <BsFillEyeFill
-                        style={{
-                          fontSize: "16px",
-                          cursor: "pointer",
-                          opacity: 0.75,
-                        }}
-                      />
-                    </C.AreaIcon>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </C.InventarioList>
-        </C.AreaInventario>
-      </C.ContainerSearch>
+        <C.InventarioList>
+          <table>
+            <thead>
+              <tr>
+                <th>Nome</th>
+                <th>Disponível</th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Cadeira de rodas</td>
+                <td>
+                  {" "}
+                  <C.Status statusColor="green"></C.Status>
+                </td>
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Cadeira de rodas</td>
+                <td>
+                  {" "}
+                  <C.Status statusColor="green"></C.Status>
+                </td>
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Cadeira de rodas</td>
+                <td>
+                  {" "}
+                  <C.Status statusColor="red"></C.Status>
+                </td>
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Cadeira de rodas</td>
+                <td>
+                  {" "}
+                  <C.Status statusColor="red"></C.Status>
+                </td>
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Cadeira de rodas</td>
+                <td>
+                  {" "}
+                  <C.Status statusColor="green"></C.Status>
+                </td>
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+              <tr>
+                <td>Cadeira de rodas</td>
+                <td>
+                  {" "}
+                  <C.Status statusColor="red"></C.Status>
+                </td>
+                <td>
+                  {" "}
+                  <C.AreaIcon
+                    onClick={() => handleViewCandidate(candidate.email)}
+                  >
+                    <BsFillEyeFill
+                      style={{
+                        fontSize: "16px",
+                        cursor: "pointer",
+                        opacity: 0.75,
+                      }}
+                    />
+                  </C.AreaIcon>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </C.InventarioList>
+      </C.AreaInventario>
     </>
   );
 }

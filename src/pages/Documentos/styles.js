@@ -26,16 +26,7 @@ export const AreaButtons = styled.div`
   display: flex;
   align-items: center;
   gap: 3rem;
-
-  form {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-
-    progress {
-      margin-top: 0.5rem;
-    }
-  }
+  margin-left: 3rem;
 `;
 
 export const AreaInputFile = styled.div`
@@ -94,5 +85,4 @@ export const ButtonCancelarStorage = styled.button`
 export const AreaButtonsStorage = styled.div`
   display: flex;
   gap: 1rem;
-
 `;
