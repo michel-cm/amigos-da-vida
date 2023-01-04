@@ -16,8 +16,7 @@ export function Home() {
       <C.AreaCardsResume>
         <Card title={"Assistidos"} color={"#FC5A5A"} value={105} />
         <Card title={"Inventário"} color={"#E2992B"} value={47} />
-        <Card title={"Empréstimos"} color={"#3AB04D"} value={23} />
-        <Card title={"Profissionais"} color={"#2261BC"} value={3} />
+        <Card title={"Empréstimos"} color={"#3AB04D"} value={23} />       
       </C.AreaCardsResume>
 
       <C.ContainerAreaCardsButtons>
